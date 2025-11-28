@@ -27,17 +27,20 @@ public class CollisionSlider : MonoBehaviour
     {
         if (!hit) { 
             hitCategory.text = "Miss"; 
+            ScoreController.BreakCombo();
         } else if (time > transform.localScale.z/40*.9) { 
             hitCategory.text = "Perfect"; 
+            ScoreController.ScorePerfect();
         } else if (time > transform.localScale.z/40*.8) { 
             hitCategory.text = "Great"; 
+            ScoreController.ScoreGreat();
         } else if (time > transform.localScale.z/40*.7) { 
             hitCategory.text = "Good";
+            ScoreController.ScoreGood();
         }else {
             hitCategory.text = "Miss";
+            ScoreController.BreakCombo();
         }
-        hit = false;
-        time = 0f;
         Destroy(gameObject);
     }
 }

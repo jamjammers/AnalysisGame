@@ -30,16 +30,17 @@ public class CollisionFlick : MonoBehaviour
     {
         if (!hit) { 
             hitCategory.text = "Miss"; 
+            ScoreController.BreakCombo();
         } else if (time < transform.localScale.z/40*.33) { 
             hitCategory.text = "Perfect"; 
+            ScoreController.ScorePerfect();
         } else if (time < transform.localScale.z/40*.67) { 
             hitCategory.text = "Great"; 
+            ScoreController.ScoreGreat();
         } else if (time < transform.localScale.z/40) { 
             hitCategory.text = "Good";
+            ScoreController.ScoreGood();
         }
-
-        hit = false;
-        time = 0f;
         Destroy(gameObject);
     }
 }
