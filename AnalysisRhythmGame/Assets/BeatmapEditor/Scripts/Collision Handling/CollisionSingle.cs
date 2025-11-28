@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class CollisionSingle : MonoBehaviour
 {
+    [SerializeField] private GameObject gameObject;
     [SerializeField] private string key;
     [SerializeField] private TextMeshProUGUI hitCategory;
     [SerializeField] private AudioSource hitEffect;
@@ -15,13 +16,6 @@ public class CollisionSingle : MonoBehaviour
 
         if (other.gameObject.tag == "Input") {
             if (Input.GetKeyDown(KeyMapping.keyMap[key])) {
-                if (time < transform.localScale.z/40*.5) { 
-                    hitCategory.text = "Perfect"; 
-                } else if (time < transform.localScale.z/40*.75) { 
-                    hitCategory.text = "Great"; 
-                } else if (time < transform.localScale.z/40) { 
-                    hitCategory.text = "Good";
-                }
                 hit = true;
                 hitEffect.Play();
             }
@@ -31,8 +25,18 @@ public class CollisionSingle : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (!hit) { hitCategory.text = "Miss"; }
+        if (!hit) { 
+            hitCategory.text = "Miss"; 
+        } else if (time < transform.localScale.z/40*.5) { 
+            hitCategory.text = "Perfect"; 
+        } else if (time < transform.localScale.z/40*.75) { 
+            hitCategory.text = "Great"; 
+        } else if (time < transform.localScale.z/40) { 
+            hitCategory.text = "Good";
+        }
+
         hit = false;
         time = 0f;
+        Destroy(gameObject);
     }
 }

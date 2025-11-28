@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class CollisionSlider : MonoBehaviour
 {
+    [SerializeField] private GameObject gameObject;
     [SerializeField] private string key;
     [SerializeField] private TextMeshProUGUI hitCategory;
     [SerializeField] private AudioSource hitEffect;
@@ -17,17 +18,6 @@ public class CollisionSlider : MonoBehaviour
                 time += Time.deltaTime;
                 hitEffect.Play();
                 hit = true;
-
-                if (time > transform.localScale.z/40*.9) { 
-                    hitCategory.text = "Perfect"; 
-                } else if (time > transform.localScale.z/40*.8) { 
-                    hitCategory.text = "Great"; 
-                } else if (time > transform.localScale.z/40*.7) { 
-                    hitCategory.text = "Good";
-                }else {
-                    hitCategory.text = "Miss";
-                }
-                Debug.Log("up");
             }
         }
         
@@ -35,8 +25,19 @@ public class CollisionSlider : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (!hit) { hitCategory.text = "Miss"; }
+        if (!hit) { 
+            hitCategory.text = "Miss"; 
+        } else if (time > transform.localScale.z/40*.9) { 
+            hitCategory.text = "Perfect"; 
+        } else if (time > transform.localScale.z/40*.8) { 
+            hitCategory.text = "Great"; 
+        } else if (time > transform.localScale.z/40*.7) { 
+            hitCategory.text = "Good";
+        }else {
+            hitCategory.text = "Miss";
+        }
         hit = false;
         time = 0f;
+        Destroy(gameObject);
     }
 }

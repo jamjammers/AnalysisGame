@@ -20,7 +20,7 @@ public class Editor : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        index = 20;
+        // index = NoteSpawner.notes.Count+1;
     }
 
     public void NoteType()
@@ -84,28 +84,36 @@ public class Editor : MonoBehaviour
 
     public void Change()
     {
-        Note note = new Note(prefabs[(int) key], isSlider, startTime, endTime, index);
+        // if (isSlider) {
+        //     Note note = new Note(prefabs[(int) key], startTime, endTime);
+        // } else {
+        //     Note note = new Note(prefabs[(int) key], startTime);
+        // }
 
-        NoteSpawner.notes.Insert(index, note);
-        NoteSpawner.notes.RemoveAt(index+1);
+        // NoteSpawner.notes.Insert(index, note);
+        // NoteSpawner.notes.RemoveAt(index+1);
 
-        GameObject curr = Instantiate(note.prefab, note.pos, note.prefab.transform.rotation); 
-        curr.transform.localScale = note.scale;
-        NoteSpawner.prefabs.Insert(index, curr);
-        NoteSpawner.prefabs.RemoveAt(index+1);
+        // GameObject curr = Instantiate(note.prefab, note.pos, note.prefab.transform.rotation); 
+        // curr.transform.localScale = note.scale;
+        // NoteSpawner.prefabs.Insert(index, curr);
+        // NoteSpawner.prefabs.RemoveAt(index+1);
     }
 
     public void Add()
     {
-        Note note = new Note(prefabs[(int) key], isSlider, startTime, endTime, index);
+        // if (isSlider) {
+        //     Note note = new Note(prefabs[(int) key], startTime, endTime);
+        // } else {
+        //     Note note = new Note(prefabs[(int) key], startTime);
+        // }
 
-        NoteSpawner.notes.Add(note);
+        // NoteSpawner.notes.Add(note);
 
-        GameObject curr = Instantiate(note.prefab, note.pos, note.prefab.transform.rotation); 
-        curr.transform.localScale = note.scale;
-        NoteSpawner.prefabs.Add(curr);
+        // GameObject curr = Instantiate(note.prefab, note.pos, note.prefab.transform.rotation); 
+        // curr.transform.localScale = note.scale;
+        // NoteSpawner.prefabs.Add(curr);
 
-        index++;
+        // index++;
     }
     public void Delete()
     {
