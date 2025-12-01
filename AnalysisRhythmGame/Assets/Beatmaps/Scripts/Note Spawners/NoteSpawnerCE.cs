@@ -236,10 +236,10 @@ public class NoteSpawnerCE : MonoBehaviour
             new(originals[(int) Indexes.J], 2.43f+220*.2927f),
             new(originals[(int) Indexes.F], 2.43f+223*.2927f), 
             new(originals[(int) Indexes.J], 2.43f+224*.2927f),
-            new(originals[(int) Indexes.K], 2.43f+225*.2927f), // beat 233, 16 measures till section end
-            new(originals[(int) Indexes.F], 2.43f+289*.2927f), // beat 297, 8 measures till section end
-            new(originals[(int) Indexes.F], 2.43f+353*.2927f), // beat 361, 16 measures till section end
-            new(originals[(int) Indexes.F], 2.43f+353*.2927f) // beat 425, 32 or 28 measures till section end
+            new(originals[(int) Indexes.K], 2.43f+225*.2927f), // beat 233, 16 measures till section end (happy section)
+            new(originals[(int) Indexes.F], 2.43f+289*.2927f), // beat 297, 8 measures till section end (pulsing section)
+            new(originals[(int) Indexes.F], 2.43f+353*.2927f), // beat 361, 16 measures till section end (happy section)
+            new(originals[(int) Indexes.F], 2.43f+353*.2927f) // beat 425, 32 or 28 measures till section end (happy section continued)
         };
 
         foreach (Note note in notes) {  
