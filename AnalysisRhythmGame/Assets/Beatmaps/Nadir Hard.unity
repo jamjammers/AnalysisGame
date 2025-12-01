@@ -11848,6 +11848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SliderScript
   _audioSource: {fileID: 3290523}
+  scoreController: {fileID: 0}
 --- !u!114 &912663008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20330,6 +20331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeControllerNH
   _audioSource: {fileID: 3290523}
+  scoreController: {fileID: 1099396554}
 --- !u!4 &1661216371
 Transform:
   m_ObjectHideFlags: 0

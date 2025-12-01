@@ -11755,6 +11755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeControllerCE
   _audioSource: {fileID: 3290523}
+  scoreController: {fileID: 1099396554}
 --- !u!4 &835546210
 Transform:
   m_ObjectHideFlags: 0

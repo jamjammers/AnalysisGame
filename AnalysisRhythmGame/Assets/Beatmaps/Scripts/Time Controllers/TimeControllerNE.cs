@@ -9,7 +9,9 @@ public class TimeControllerNE : MonoBehaviour
 
     public static float CTIME = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start() { _audioSource.Play(); }
+    void Start() { _audioSource.Play();         
+    // scoreController.end(_audioSource.clip.length + 5f);
+}
 
     // Update is called once per frame
     void Update()

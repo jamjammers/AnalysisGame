@@ -8,7 +8,7 @@ public class prism : MonoBehaviour
 {
     public float rotationSpeed = 10;
     public float moveSpeed = 5;
-    public State change = State.IDLE;
+    public State state = State.IDLE;
 
     float tweenTarget = 0; // end tween rotation
     public float transformTarget = 0; // end transform position
@@ -33,7 +33,8 @@ public class prism : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (change)
+        
+        switch (state)
         {
             case State.IDLE:
                 transform.Rotate(Vector3.up,rotationSpeed * Time.deltaTime);
@@ -46,7 +47,7 @@ public class prism : MonoBehaviour
                     Vector3 euler = transform.rotation.eulerAngles;
                     euler.y = (float)tweenTarget;
                     transform.rotation = Quaternion.Euler(euler);
-                    change = State.TRANSFORM;
+                    state = State.TRANSFORM;
                     break;
                 }
                 transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
@@ -65,7 +66,7 @@ public class prism : MonoBehaviour
                     transform.rotation = Quaternion.Euler(euler);
 
                     GetComponent<Renderer>().material = afterMaterial;
-                    change = State.DONE;
+                    state = State.DONE;
                 }
                 
                 break;
@@ -74,14 +75,23 @@ public class prism : MonoBehaviour
                 // transform.Rotate(Vector3.up,rotationSpeed * Time.deltaTime);
 
                 break;
+            case State.HIDE:
+                gameObject.SetActive(false);
+                state = State.DONE;
+                break;
         }
     }
 
     public void start()
     {
-        change = State.TWEEN;
+        state = State.TWEEN;
         tweenTarget = ((float) Math.Ceiling((transform.rotation.eulerAngles.y-transformRotation-endRotation) / 90f) * 90f+transformRotation+endRotation)%360f;
         textObj.GetComponent<button>().show();
+    }
+
+    public void hide()
+    {
+        state = State.HIDE;
     }
 
     public enum State
@@ -89,6 +99,7 @@ public class prism : MonoBehaviour
         IDLE,
         TWEEN,
         TRANSFORM,
-        DONE
+        DONE,
+        HIDE
     }
 }

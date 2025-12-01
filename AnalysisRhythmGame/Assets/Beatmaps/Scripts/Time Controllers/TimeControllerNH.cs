@@ -2,7 +2,8 @@ using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
+using System.Collections;
 public class TimeControllerNH : MonoBehaviour
 {
     // private static float  SONGLENGTH = 138.423f;
@@ -11,15 +12,23 @@ public class TimeControllerNH : MonoBehaviour
     // [SerializeField] private TextMeshProUGUI _totalTime;
     // [SerializeField] private TextMeshProUGUI _globalTime;
     [SerializeField] private AudioSource _audioSource;
+
+    [SerializeField] private GameObject scoreController;
     // private float t;
     // private bool oldK;
     // private string state = "pause";
 
     public static float CTIME = 0f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
         _audioSource.Play();
+        StartCoroutine(end(_audioSource.clip.length + 5f));
+
+        // Debug.Log(_audioSource.clip.length);
+
         // _slider.onValueChanged.AddListener((v) =>
         // {
         //     CTIME = v * SONGLENGTH;
@@ -67,7 +76,6 @@ public class TimeControllerNH : MonoBehaviour
                             NoteSpawnerNH.prefabs[i].transform.position 
                                     = new Vector3(NoteSpawnerNH.notes[i].prefab.transform.position.x, NoteSpawnerNH.notes[i].prefab.transform.position.y, 40 * (NoteSpawnerNH.notes[i].impactTime-CTIME)+NoteSpawnerNH.notes[i].scale.z/2);
                         }
-                        Debug.Log("working!");
                     }
         //         break;
         // }
@@ -87,5 +95,28 @@ public class TimeControllerNH : MonoBehaviour
     {        
         _audioSource.time = time;
         _audioSource.Play();
+    }
+
+    public IEnumerator end(float delay)
+    {
+        Debug.Log(delay);
+        yield return new WaitForSeconds(delay);
+        ScoreController.gamed = true;
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Menu");
+
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+        ScoreController.done = true;
+
+        Debug.Log("Active Scene : " + SceneManager.GetActiveScene().name);
+        // Set Scene2 as the active Scene
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Menu"));
+
+        // Ouput the name of the active Scene
+        // See now that the name is updated
+        Debug.Log("Active Scene : " + SceneManager.GetActiveScene().name);
     }
 }
