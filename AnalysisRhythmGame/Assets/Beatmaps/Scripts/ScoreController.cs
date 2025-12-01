@@ -11,7 +11,7 @@ public class ScoreController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        InvokeRepeating(nameof(AddScore), .5f, .5f);
+        AddScore();
     }
 
     // Update is called once per frame
