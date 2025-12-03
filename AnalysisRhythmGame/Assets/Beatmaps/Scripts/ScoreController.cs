@@ -17,21 +17,29 @@ public class ScoreController : MonoBehaviour
     public static int great = 0;
     public static bool gamed = false;
     public static bool done = false;
+    private float time = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        AddScore();
         gamed = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        AddScore();
-
+        // setting score+combo text
         _scoreText.text = score.ToString();
         _comboText.text = combo.ToString();
+        
+        // calling AddScore every .5s
+        if (time > .1f)
+        {
+            AddScore();
+            time -= .1f;
+        }
+
+        time += Time.deltaTime;
     }
 
     public static void AddScore() { score += 10 * combo + 10; }

@@ -9,20 +9,6 @@ public class Note
     public float impactTime;
     public float releaseTime;
     private int speed;
-    public int index;
-
-    // // single/flick note constructor
-    // public Note(GameObject prefab, string type, float impactTime, int index)
-    // {
-    //     this.prefab = prefab;
-    //     this.type = type;
-    //     this.impactTime = impactTime;
-    //     this.index = index;
-    //     speed = 40;
-
-    //     scale = prefab.transform.localScale;
-    //     pos = new Vector3(prefab.transform.position.x, prefab.transform.position.y, speed*impactTime);
-    // }
 
     // slider constructor
     public Note(GameObject prefab, float impactTime, float releaseTime)
@@ -34,6 +20,8 @@ public class Note
         scale = new Vector3(2f,0.5f,speed * (releaseTime - impactTime)+3);
         pos = new Vector3(prefab.transform.position.x, prefab.transform.position.y, speed*impactTime+scale.z/2);
     }
+
+    // single/flick constructor
     public Note(GameObject prefab, float impactTime)
     {
         this.prefab = prefab;

@@ -37,9 +37,9 @@ public class TimeControllerNH : MonoBehaviour
         //     else{_currentTime.text = ((int)(CTIME/ 60)).ToString() + ":" + ((int)(CTIME*100%6000)).ToString();}
         //     state = "pause";
 
-        //     for (int i = 0; i < NoteSpawnerNH.notes.Count; i++) { 
-        //         NoteSpawnerNH.prefabs[i].transform.position 
-        //                 = new Vector3(NoteSpawnerNH.notes[i].prefab.transform.position.x, NoteSpawnerNH.notes[i].prefab.transform.position.y, 40 * (NoteSpawnerNH.notes[i].impactTime-CTIME)+NoteSpawnerNH.notes[i].scale.z/2);
+        //     for (int i = 0; i < NoteSpawner.notes.Count; i++) { 
+        //         NoteSpawner.prefabs[i].transform.position 
+        //                 = new Vector3(NoteSpawner.notes[i].prefab.transform.position.x, NoteSpawner.notes[i].prefab.transform.position.y, 40 * (NoteSpawner.notes[i].impactTime-CTIME)+NoteSpawner.notes[i].scale.z/2);
         //     }
         // });
         // _totalTime.text = "/ " + ((int)(SONGLENGTH/60)).ToString() + ":" + ((int)SONGLENGTH%60).ToString();
@@ -55,9 +55,9 @@ public class TimeControllerNH : MonoBehaviour
         //             PlayAudio(CTIME);
         //             break;
         //         case "play":
-        //             for (int i = 0; i < NoteSpawnerNH.notes.Count; i++) { 
-        //                 NoteSpawnerNH.prefabs[i].transform.position 
-        //                         = new Vector3(NoteSpawnerNH.notes[i].prefab.transform.position.x, NoteSpawnerNH.notes[i].prefab.transform.position.y, 40 * (NoteSpawnerNH.notes[i].impactTime-CTIME)+NoteSpawnerNH.notes[i].scale.z/2);
+        //             for (int i = 0; i < NoteSpawner.notes.Count; i++) { 
+        //                 NoteSpawner.prefabs[i].transform.position 
+        //                         = new Vector3(NoteSpawner.notes[i].prefab.transform.position.x, NoteSpawner.notes[i].prefab.transform.position.y, 40 * (NoteSpawner.notes[i].impactTime-CTIME)+NoteSpawner.notes[i].scale.z/2);
         //             }
         //             state = "pause";
         //             break;
@@ -71,10 +71,11 @@ public class TimeControllerNH : MonoBehaviour
         //         _audioSource.Stop();
         //         break;
         //     case "play":
-                    for (int i = 0; i < NoteSpawnerNH.notes.Count; i++) { 
-                        if (NoteSpawnerNH.prefabs[i] != null) {
-                            NoteSpawnerNH.prefabs[i].transform.position 
-                                    = new Vector3(NoteSpawnerNH.notes[i].prefab.transform.position.x, NoteSpawnerNH.notes[i].prefab.transform.position.y, 40 * (NoteSpawnerNH.notes[i].impactTime-CTIME)+NoteSpawnerNH.notes[i].scale.z/2);
+                    // moving each note manually as a function of time
+                    for (int i = 0; i < NoteSpawner.notes.Count; i++) { 
+                        if (NoteSpawner.prefabs[i] != null) {
+                            NoteSpawner.prefabs[i].transform.position 
+                                    = new Vector3(NoteSpawner.notes[i].prefab.transform.position.x, NoteSpawner.notes[i].prefab.transform.position.y, 40 * (NoteSpawner.notes[i].impactTime-CTIME)+NoteSpawner.notes[i].scale.z/2);
                         }
                     }
         //         break;

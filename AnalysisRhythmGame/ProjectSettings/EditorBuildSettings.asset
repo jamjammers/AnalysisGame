@@ -12,10 +12,10 @@ EditorBuildSettings:
     path: Assets/MenuScene/Menu.unity
     guid: 702345e7e0ae94ff184843b3ff1a00b6
   - enabled: 1
-    path: Assets/Beatmaps/Colorful Chaos Easy.unity
+    path: Assets/Beatmaps/Colorful Chaos Beatmap.unity
     guid: 439faaef4d5b34a4287eb5e6d42599db
   - enabled: 1
-    path: Assets/Beatmaps/Nadir Hard.unity
+    path: Assets/Beatmaps/Nadir Beatmap.unity
     guid: 8afb91a51a0034be0a7ee3b19b70e507
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class KeyMapping
+public class KeyMapping
 {
     public static readonly Dictionary<string, KeyCode> keyMap = new Dictionary<string, KeyCode>()
     {
