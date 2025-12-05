@@ -15,12 +15,17 @@ public class CollisionSingle : MonoBehaviour
 
     public void Update()
     {
-        if (transform.position.z < 20 && Input.GetKeyDown(KeyMapping.keyMap[key])) { hit = true; hitEffect.Play(); }
-        if (hit) {t1 += Time.deltaTime;}
-        if (enter) {t2 += Time.deltaTime;}
+        hit = transform.position.z < 20 && Input.GetKeyDown(KeyMapping.keyMap[key]);
+        if (hit) {
+            t1 += Time.deltaTime;
+            hitEffect.Play(); 
+        }
+
+        if (enter) t2 += Time.deltaTime;
 
         if (hit && enter)
         {
+            
             float dif = Math.Abs(t2-t1);
             if (!hit) { 
                 hitCategory.text = "Miss"; 
@@ -45,5 +50,7 @@ public class CollisionSingle : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter(Collider other) { if (other.gameObject.tag == "Input") {enter = true;} }
+    public void OnTriggerEnter(Collider other) { 
+        if (other.gameObject.tag == "Input") enter = true; 
+    }
 }

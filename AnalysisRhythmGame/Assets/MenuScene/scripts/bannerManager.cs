@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class banner : MonoBehaviour
+public class BannerManager : MonoBehaviour
 {
     public int speed = 10;
-    GameObject[] Banners;
+    public GameObject[] Banners;
+    public GameObject nextButton;
+    public GameObject previousButton;
     int selected = 0;
-    int direction;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,17 +20,36 @@ public class banner : MonoBehaviour
         
     }
 
-    void next()
+    public void next()
     {
+        if(selected >= Banners.Length - 1) return;
+        GameObject prevBanner = Banners[selected];
         Banners[selected].GetComponent<Banner>().move(-speed, false);
-        selected = (selected + 1) % Banners.Length;
-        Banners[selected].GetComponent<Banner>().move(-speed, true);
-
+        selected = selected + 1;
+        Banners[selected].GetComponent<Banner>().move(-speed, true, prevBanner.GetComponent<RectTransform>().anchoredPosition.x);
+        if(selected == Banners.Length - 1)
+        {
+            nextButton.SetActive(false);
+        }
+        if(selected == 1)
+        {
+            previousButton.SetActive(true);
+        }
     }
-    void previous()
+    public void previous()
     {
+        if(selected <= 0) return;
+        GameObject prevBanner = Banners[selected];
         Banners[selected].GetComponent<Banner>().move(speed, false);
-        selected = (selected - 1) % Banners.Length;
-        Banners[selected].GetComponent<Banner>().move(speed, true);
+        selected = selected-1;
+        Banners[selected].GetComponent<Banner>().move(speed, true, prevBanner.GetComponent<RectTransform>().anchoredPosition.x);
+        if(selected == 0)
+        {
+            previousButton.SetActive(false);
+        }
+        if(selected == Banners.Length - 2)
+        {
+            nextButton.SetActive(true);
+        }
     }
 }

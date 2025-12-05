@@ -47,7 +47,7 @@ public class endcontroller : MonoBehaviour
 
         float gain = Mathf.Max(NextGaussian(score, 10000),0);
         expText.GetComponent<TextMeshProUGUI>().text = "Exp Gained: \n" + gain.ToString();
-        Gachafather.exp += gain;
+        Inventory.gainExp(gain);
 
         int count = (int)Mathf.Floor(10 * perfect / (perfect + great + good + miss + 1));
         int pull = 0;
@@ -59,11 +59,9 @@ public class endcontroller : MonoBehaviour
             }
         }
         pullText.GetComponent<TextMeshProUGUI>().text = "Pulls recieved: \n" + (pull.ToString());
-        Gachafather.pulls += pull;
-    
-    
-        
+        Inventory.pulls += pull;
     }
+
     private System.Random random = new System.Random();
     
     public float NextGaussian(double mean = 0, double stdDev = 1)
