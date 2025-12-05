@@ -21,10 +21,8 @@ public class GachaPopup : MonoBehaviour
         }
     }
     public void pull()
-    {
-        if(Inventory.pulls <= 0) return;
-        
-        GachaCard gachaCard = GachaManager.pull();
+    {        
+        GachaCard gachaCard = Gacha.pull();
         if (gachaCard == null) return;
         thing.texture = gachaCard.texture;
 

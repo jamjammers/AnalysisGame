@@ -11,18 +11,22 @@ public class GachaCard
         name = n;
         rarity = r;
         texture = t;
-        GachaManager.allGachaCards.Add(this);
+        Gacha.allGachaCards.Add(this);
         if (r == 5)
         {
-            GachaManager.fiveStars.Add(this);
+            Gacha.fiveStars.Add(this);
         }
         else if (r == 4)
         {
-            GachaManager.fourStars.Add(this);
+            Gacha.fourStars.Add(this);
         }
         else if (r == 3)
         {
-            GachaManager.threeStars.Add(this);
+            Gacha.threeStars.Add(this);
+        }
+        else if (r == 0)
+        {
+            Gacha.foods.Add(this);
         }
     }
 }

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class prism : MonoBehaviour
+public class IsoconMovement : MonoBehaviour
 {
     public float rotationSpeed = 10;
     public float moveSpeed = 5;
@@ -86,7 +86,7 @@ public class prism : MonoBehaviour
     {
         state = State.TWEEN;
         tweenTarget = ((float) Math.Ceiling((transform.rotation.eulerAngles.y-transformRotation-endRotation) / 90f) * 90f+transformRotation+endRotation)%360f;
-        textObj.GetComponent<button>().show();
+        textObj.GetComponent<BasicButton>().show();
     }
 
     public void hide()

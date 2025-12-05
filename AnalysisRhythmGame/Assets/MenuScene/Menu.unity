@@ -984,6 +984,7 @@ MonoBehaviour:
   - limelightmath
   - the trio
   - random apriltag
+  rarities: 
 --- !u!4 &235979214
 Transform:
   m_ObjectHideFlags: 0
@@ -1314,7 +1315,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::gachaguy
   thing: {fileID: 415202114}
   manager: {fileID: 0}
-  gachaManager: {fileID: 0}
 --- !u!114 &415202114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1454,7 +1454,7 @@ GameObject:
   - component: {fileID: 437224456}
   - component: {fileID: 437224455}
   m_Layer: 5
-  m_Name: Game
+  m_Name: SelectGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3564,7 +3564,7 @@ GameObject:
   - component: {fileID: 1592732648}
   - component: {fileID: 1592732653}
   m_Layer: 5
-  m_Name: end
+  m_Name: ScoreBreakdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

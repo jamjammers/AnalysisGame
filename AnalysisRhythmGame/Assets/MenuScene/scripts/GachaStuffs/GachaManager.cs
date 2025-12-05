@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BannerManager : MonoBehaviour
+public class GachaManager : MonoBehaviour
 {
     public int speed = 10;
     public GameObject[] Banners;

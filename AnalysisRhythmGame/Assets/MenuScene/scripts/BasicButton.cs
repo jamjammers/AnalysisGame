@@ -2,12 +2,14 @@ using TMPro;
 using Unity.IntegerTime;
 using UnityEngine;
 
-public class button : MonoBehaviour
+public class BasicButton : MonoBehaviour
 {
     public RectTransform tmpGUI;
     public bool startHidden;
 
     Vector3 location;
+
+    //I don't actually know this is probably temp LOL
     void Start()
     {
         tmpGUI = GetComponent<RectTransform>();
@@ -30,6 +32,7 @@ public class button : MonoBehaviour
     {
         tmpGUI.position = location;
     }
+
     public void hide()
     {
         Debug.Log("a");

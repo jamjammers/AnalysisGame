@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class death : MonoBehaviour
+public class BasicScreen : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -13,11 +13,11 @@ public class death : MonoBehaviour
     {
         
     }
-    public void die()
+    public void Hide()
     {
         gameObject.SetActive(false);
     }
-    public void hi()
+    public void Show()
     {
         gameObject.SetActive(true);
     }

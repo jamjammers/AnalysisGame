@@ -14,25 +14,37 @@ public class Inventory : MonoBehaviour
 
     public void Start()
     {
-        if(loaded) return;
+        if (loaded) return;
         loaded = true;
-
     }
 
-    public static bool pull()
+    public static bool characterPull()
     {
-        if(pulls <= 0) return false;
+        if (pulls <= 0) return false;
         pulls--;
         return true;
     }
-    public static void addCard(GachaCard gachaCard)
+    public static bool ticketPull()
     {
-        cards.Add(gachaCard);
+        if (tickets <= 0) return false;
+        tickets--;
+        return true;
+    }
+    public static void addCard(GachaCard gachaCard) { cards.Add(gachaCard); }
+    public static List<GachaCard> getCards() { return cards; }
+
+    public static void addPulls(int amount)
+    {
+        pulls += amount;
+    }
+    public static void addTicket()
+    {
+        tickets++;
     }
     public static void gainExp(float amount)
     {
         exp += amount;
-        while(exp >= level * 100)
+        while (exp >= level * 100)
         {
             exp -= level * 100;
             level++;
