@@ -339,8 +339,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1909901399}
-        m_TargetAssemblyTypeName: death, Assembly-CSharp
-        m_MethodName: hi
+        m_TargetAssemblyTypeName: BasicScreen, Assembly-CSharp
+        m_MethodName: Show
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -351,8 +351,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 437224455}
-        m_TargetAssemblyTypeName: death, Assembly-CSharp
-        m_MethodName: die
+        m_TargetAssemblyTypeName: BasicScreen, Assembly-CSharp
+        m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -976,15 +976,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   textures:
   - {fileID: 2800000, guid: da5d087b8e2674241a64ddca055d6728, type: 3}
-  - {fileID: 2800000, guid: 6176c3eb5ba734bc8a905413d39599bc, type: 3}
-  - {fileID: 2800000, guid: ede165949cf854b2187e3ab632b0f4fb, type: 3}
-  - {fileID: 2800000, guid: 4cafd6a62d8e34d39a2e820e097b7320, type: 3}
   names:
   - qr
-  - limelightmath
-  - the trio
-  - random apriltag
-  rarities: 
+  rarities: 00000000
+  ticketTexture: {fileID: 0}
 --- !u!4 &235979214
 Transform:
   m_ObjectHideFlags: 0
@@ -1774,8 +1769,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1909901399}
-        m_TargetAssemblyTypeName: death, Assembly-CSharp
-        m_MethodName: die
+        m_TargetAssemblyTypeName: BasicScreen, Assembly-CSharp
+        m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1786,8 +1781,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1415548980}
-        m_TargetAssemblyTypeName: death, Assembly-CSharp
-        m_MethodName: hi
+        m_TargetAssemblyTypeName: BasicScreen, Assembly-CSharp
+        m_MethodName: Show
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3778,8 +3773,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1909901399}
-        m_TargetAssemblyTypeName: death, Assembly-CSharp
-        m_MethodName: hi
+        m_TargetAssemblyTypeName: BasicScreen, Assembly-CSharp
+        m_MethodName: Show
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3790,8 +3785,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1592732648}
-        m_TargetAssemblyTypeName: death, Assembly-CSharp
-        m_MethodName: die
+        m_TargetAssemblyTypeName: BasicScreen, Assembly-CSharp
+        m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4059,8 +4054,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1909901399}
-        m_TargetAssemblyTypeName: death, Assembly-CSharp
-        m_MethodName: hi
+        m_TargetAssemblyTypeName: BasicScreen, Assembly-CSharp
+        m_MethodName: Show
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4071,8 +4066,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1415548980}
-        m_TargetAssemblyTypeName: death, Assembly-CSharp
-        m_MethodName: die
+        m_TargetAssemblyTypeName: BasicScreen, Assembly-CSharp
+        m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4873,7 +4868,7 @@ GameObject:
   - component: {fileID: 1976363542}
   - component: {fileID: 1976363541}
   m_Layer: 5
-  m_Name: Exit
+  m_Name: Collection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5202,8 +5197,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1909901399}
-        m_TargetAssemblyTypeName: death, Assembly-CSharp
-        m_MethodName: die
+        m_TargetAssemblyTypeName: BasicScreen, Assembly-CSharp
+        m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5214,8 +5209,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 437224455}
-        m_TargetAssemblyTypeName: death, Assembly-CSharp
-        m_MethodName: hi
+        m_TargetAssemblyTypeName: BasicScreen, Assembly-CSharp
+        m_MethodName: Show
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

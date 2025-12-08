@@ -6,7 +6,7 @@ public class Gacha : MonoBehaviour
     [SerializeField] Texture2D[] textures;
     // public int[] rarities;
     [SerializeField] string[] names;
-    [SerializeField] int[] rarities;
+    [SerializeField] GachaCard.GachaRarity[] rarities;
 
     [SerializeField] Texture2D ticketTexture;
 
@@ -16,10 +16,29 @@ public class Gacha : MonoBehaviour
     public static List<GachaCard> threeStars = new List<GachaCard>();
     public static List<GachaCard> foods = new List<GachaCard>();
 
+    public static Dictionary<GachaCard.GachaRarity, List<GachaCard>> rarityDict = new Dictionary<GachaCard.GachaRarity, List<GachaCard>>()
+    {
+        { GachaCard.GachaRarity.FIVE_STAR, new List<GachaCard>() },
+        { GachaCard.GachaRarity.FOUR_STAR, new List<GachaCard>() },
+        { GachaCard.GachaRarity.THREE_STAR, new List<GachaCard>() },
+        { GachaCard.GachaRarity.FOOD_TICKET, new List<GachaCard>() },
+
+        { GachaCard.GachaRarity.COAL, new List<GachaCard>() },
+        { GachaCard.GachaRarity.CURSE, new List<GachaCard>() },
+        { GachaCard.GachaRarity.TRASH, new List<GachaCard>() },
+        { GachaCard.GachaRarity.COMMON, new List<GachaCard>() },
+        { GachaCard.GachaRarity.UNCOMMON, new List<GachaCard>() },
+        { GachaCard.GachaRarity.RARE, new List<GachaCard>() },
+        { GachaCard.GachaRarity.EPIC, new List<GachaCard>() },
+        { GachaCard.GachaRarity.LEGENDARY, new List<GachaCard>() },
+        { GachaCard.GachaRarity.MYTHIC, new List<GachaCard>() }
+    };
+
     public static GachaCard ticket;
 
     public void Start()
     {
+        Debug.Log(Resources.LoadAll<Texture2D>("GachaCards/"));
         if (allGachaCards.Count == 0)
             loadCards();
     }
@@ -29,13 +48,13 @@ public class Gacha : MonoBehaviour
         {
             new GachaCard(names[i], rarities[i], textures[i]);
         }
-        ticket = new GachaCard("Gacha Ticket", -1, ticketTexture);
+        ticket = new GachaCard("Gacha Ticket", GachaCard.GachaRarity.FOOD_TICKET, ticketTexture);
     }
 
     public static GachaCard foodPull()
     {
         if (Inventory.ticketPull() == false) return null;
-        double pullChance = Random.Range(0f, 1f);
+        double pullChance = Utilities.Normal();
 
         GachaCard pulled;
         if (pullChance < 0.5f)
