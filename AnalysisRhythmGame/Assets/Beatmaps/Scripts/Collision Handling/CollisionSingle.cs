@@ -35,13 +35,13 @@ public class CollisionSingle : MonoBehaviour
                 hitCategory.text = "Good";
                 ScoreController.ScoreGood();
             }
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
         if (t2 > .6f)
         {
             hitCategory.text = "Miss";
             ScoreController.BreakCombo();
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
     }
 

@@ -39,14 +39,14 @@ public class CollisionFlick : MonoBehaviour
                 hitCategory.text = "Good";
                 ScoreController.ScoreGood();
             }
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
 
         if (t2 > .5f)
         {
             hitCategory.text = "Miss";
             ScoreController.BreakCombo();
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
     }
 

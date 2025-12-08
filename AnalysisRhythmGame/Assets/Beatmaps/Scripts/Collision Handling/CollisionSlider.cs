@@ -43,7 +43,7 @@ public class CollisionSlider : MonoBehaviour
                 hitCategory.text = "Good";
                 ScoreController.ScoreGood();
             }
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
     }
     public void OnTriggerStay(Collider other) { if (other.gameObject.tag == "Input") {t2 += Time.deltaTime;} }
