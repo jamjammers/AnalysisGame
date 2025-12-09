@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public class GachaCard
 {
-    public string name;
-    public GachaRarity rarity;
-    public Texture2D texture;
+    public string name {get;}
+    public GachaRarity rarity {get;}
+    public Texture2D texture {get;}
     public GachaCard(string n, GachaRarity r, Texture2D t)
     {
         name = n;

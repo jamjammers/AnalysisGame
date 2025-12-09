@@ -1,7 +1,12 @@
 public static class Buffs
 {
     /* 
-    card buffs: btw all of these are cats
+    card buffs:
+        all of these are cats
+        the name below can be gotten using team[n].name and will return it in full lowercase
+        see the gacha card class in assets/menuscene/scripts/gachastuffs/gachacard.cs for more
+        there may be null values if no card is equipped in that slot
+        teams of 3 
 
         3*: basic buffs
             angry: +score %
@@ -24,7 +29,8 @@ public static class Buffs
             gourmand: guarrentees a food ticket every game
             perfectionist: guarrentees all perfects (for tapped notes)
     */
-    
+    public static GachaCard[] team = new GachaCard[3];
+
     /* 
     food buffs
         the int is the number of turns left
