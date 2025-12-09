@@ -1,6 +1,29 @@
 public static class Buffs
 {
-    // card buffs
+    /* 
+    card buffs: btw all of these are cats
+
+        3*: basic buffs
+            angry: +score %
+            confused: +score %
+            grumpy: +score %
+            happy: +score %
+            old: +score %
+            sad: +score %
+            scared: +score %
+
+        4*: good buffs
+            bubbles: grants "bubbles" that grants combo on misses, etc (n) times
+            cook: grants extra hp for each perfect note
+            flower: grants "petals" that prevents hp loss (n) times
+            painter: multiplies the size of the judgement bar by (n%)
+            singer: grants a score boost for perfect notes
+
+        5*: game altering effects (must be the party leader)
+            patchwork: has a boosted effect of every party member 
+            gourmand: guarrentees a food ticket every game
+            perfectionist: guarrentees all perfects (for tapped notes)
+    */
     
     /* 
     food buffs
@@ -52,5 +75,17 @@ public static class Buffs
         //Rainbow tier
         {"rainbow",0}
     };
+
+    public static void DecreaseBuffDurations()
+    {
+        List<string> keys = new List<string>(activeBuffs.Keys);
+        foreach (string key in keys)
+        {
+            if (activeBuffs[key] > 0)
+            {
+                activeBuffs[key]--;
+            }
+        }
+    }
 
 }
