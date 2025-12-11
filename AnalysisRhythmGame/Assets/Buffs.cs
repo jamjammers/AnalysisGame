@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public static class Buffs
 {
     /* 
@@ -37,10 +39,10 @@ public static class Buffs
         honestly within the groups, the actual effects can be swapped around
         
         Coal Tier: really bad debuff
-            Coal: Idk i forgot what this debuff does
+            Coal: random note speed
 
         Curse Tier: debuffs (with a slight counteracting buff)
-            cockroach and jam: idk
+            cockroach and james: idk
             mud pie: requires more precise timing + other things (think hard rock)
 
         Trash Tier: light vision debuff
