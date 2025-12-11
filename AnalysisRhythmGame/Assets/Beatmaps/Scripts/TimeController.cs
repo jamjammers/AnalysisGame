@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 public class TimeControllerNH : MonoBehaviour
 {
-    private static float  SONGLENGTH = 138.423f;
     [SerializeField] private Slider _slider;
     [SerializeField] private TextMeshProUGUI _currentTime;
     [SerializeField] private TextMeshProUGUI _totalTime;
@@ -14,6 +13,7 @@ public class TimeControllerNH : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
 
     [SerializeField] private GameObject scoreController;
+    private static float  SONGLENGTH;
     private float t;
     private bool oldK;
     private string state = "pause";
@@ -23,6 +23,7 @@ public class TimeControllerNH : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        SONGLENGTH = _audioSource.clip.length;
 
         // _audioSource.Play();
         // StartCoroutine(end(_audioSource.clip.length + 5f));

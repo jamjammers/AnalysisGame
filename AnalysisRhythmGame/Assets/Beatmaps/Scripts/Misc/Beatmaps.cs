@@ -1246,7 +1246,330 @@ public class Beatmaps : MonoBehaviour
                 };
                 break;
             case "Scorpio Beatmap": 
-                NOTES = new List<Note> {};
+                NOTES = new List<Note>
+                {
+                    new(originals[(int) Indexes.K], .18f+0*.75f), 
+                    new(originals[(int) Indexes.K], .18f+3*.75f), 
+                    new(originals[(int) Indexes.J], .18f+4*.75f), 
+
+                    new(originals[(int) Indexes.F], .18f+8*.75f), 
+                    new(originals[(int) Indexes.F], .18f+10*.75f), 
+                    new(originals[(int) Indexes.J], .18f+11*.75f), 
+                    new(originals[(int) Indexes.J], .18f+12*.75f), 
+
+                    new(originals[(int) Indexes.K], .18f+16*.75f), 
+                    new(originals[(int) Indexes.J], .18f+17*.75f), 
+                    new(originals[(int) Indexes.J], .18f+20*.75f),
+                    new(originals[(int) Indexes.J], .18f+24*.75f),
+                    new(originals[(int) Indexes.F], .18f+26*.75f),
+                    new(originals[(int) Indexes.D], .18f+27*.75f),
+                    new(originals[(int) Indexes.D], .18f+28*.75f),
+                    new(originals[(int) Indexes.F], .18f+30*.75f),
+
+                    new(originals[(int) Indexes.S], .18f+64*.375f, .18f+68*.375f),
+
+                    new(originals[(int) Indexes.L], .18f+68*.375f, .18f+72*.375f),
+
+                    new(originals[(int) Indexes.S], .18f+76*.375f, .18f+80*.375f),
+                    new(originals[(int) Indexes.K], .18f+80*.375f),
+
+                    new(originals[(int) Indexes.L], .18f+84*.375f, .18f+88*.375f),
+                    new(originals[(int) Indexes.D], .18f+88*.375f), 
+
+                    new(originals[(int) Indexes.F], .18f+94*.375f), 
+                    new(originals[(int) Indexes.J], .18f+96*.375f), 
+
+                    new(originals[(int) Indexes.L], .18f+98*.375f, .18f+104*.375f),
+                    new(originals[(int) Indexes.SEMISPACE], .18f+102*.375f), 
+                    new(originals[(int) Indexes.SPACEA], .18f+104*.375f), 
+                    new(originals[(int) Indexes.D], .18f+106*.375f), 
+                    new(originals[(int) Indexes.K], .18f+106*.375f), 
+
+                    new(originals[(int) Indexes.S], .18f+106*.375f, .18f+112*.375f),
+                    new(originals[(int) Indexes.J], .18f+110*.375f), 
+                    new(originals[(int) Indexes.F], .18f+112*.375f), 
+
+                    new(originals[(int) Indexes.L], .18f+120*.375f, .18f+126*.375f),
+                    new(originals[(int) Indexes.D], .18f+118*.375f), 
+                    new(originals[(int) Indexes.K], .18f+120*.375f), 
+                    new(originals[(int) Indexes.J], .18f+122*.375f), 
+                    new(originals[(int) Indexes.F], .18f+124*.375f), 
+                    new(originals[(int) Indexes.J], .18f+126*.375f), 
+
+                    new(originals[(int) Indexes.ASEMI], .18f+128*.375f), // 128 - 160
+
+                    new(originals[(int) Indexes.S], .18f+130*.375f, .18f+136*.375f), 
+                    new(originals[(int) Indexes.D], .18f+134*.375f), 
+                    new(originals[(int) Indexes.D], .18f+135*.375f), 
+
+                    new(originals[(int) Indexes.ASEMI], .18f+136*.375f), 
+                    new(originals[(int) Indexes.SPACEA], .18f+138*.375f), 
+
+
+                    new(originals[(int) Indexes.L], .18f+144*.375f, .18f+152*.375f), 
+                    new(originals[(int) Indexes.D], .18f+144*.375f), 
+                    new(originals[(int) Indexes.F], .18f+145*.375f), 
+                    new(originals[(int) Indexes.D], .18f+146*.375f),
+                    new(originals[(int) Indexes.F], .18f+147*.375f),
+
+                    new(originals[(int) Indexes.S], .18f+148*.375f, .18f+156*.375f), 
+                    new(originals[(int) Indexes.K], .18f+152*.375f),
+                    new(originals[(int) Indexes.J], .18f+153*.375f),
+                    new(originals[(int) Indexes.SPACEA], .18f+154*.375f), 
+
+                    new(originals[(int) Indexes.D], .18f+156*.375f), 
+                    new(originals[(int) Indexes.J], .18f+156*.375f), 
+
+                    new(originals[(int) Indexes.ASPACE], .18f+158*.375f),
+
+                    new(originals[(int) Indexes.D], .18f+160*.375f),  // 160 - 224
+                    new(originals[(int) Indexes.D], .18f+161*.375f), 
+                    new(originals[(int) Indexes.F], .18f+162*.375f), 
+                    new(originals[(int) Indexes.K], .18f+163*.375f), 
+
+                    new(originals[(int) Indexes.L], .18f+164*.375f, .18f+172*.375f), 
+                    new(originals[(int) Indexes.F], .18f+166*.375f), 
+                    new(originals[(int) Indexes.D], .18f+167*.375f), 
+                    new(originals[(int) Indexes.F], .18f+168*.375f), 
+                    new(originals[(int) Indexes.J], .18f+169*.375f), 
+
+                    new(originals[(int) Indexes.S], .18f+170*.375f, .18f+180*.375f), 
+                    new(originals[(int) Indexes.J], .18f+172*.375f), 
+                    new(originals[(int) Indexes.J], .18f+174*.375f), 
+                    new(originals[(int) Indexes.J], .18f+176*.375f), 
+                    new(originals[(int) Indexes.F], .18f+177*.375f), 
+                    new(originals[(int) Indexes.D], .18f+178*.375f), 
+
+                    new(originals[(int) Indexes.L], .18f+178*.375f, .18f+186*.375f), 
+                    new(originals[(int) Indexes.D], .18f+180*.375f), 
+                    new(originals[(int) Indexes.K], .18f+180.5f*.375f), 
+                    new(originals[(int) Indexes.D], .18f+181*.375f), 
+                    new(originals[(int) Indexes.K], .18f+181.5f*.375f), 
+                    new(originals[(int) Indexes.F], .18f+184*.375f), 
+                    new(originals[(int) Indexes.J], .18f+184.5f*.375f), 
+                    new(originals[(int) Indexes.F], .18f+185*.375f), 
+                    new(originals[(int) Indexes.J], .18f+185.5f*.375f), 
+                    new(originals[(int) Indexes.D], .18f+186*.375f), 
+                    new(originals[(int) Indexes.K], .18f+186*.375f), 
+
+                    new(originals[(int) Indexes.SPACEA], .18f+188*.375f), 
+                    new(originals[(int) Indexes.S], .18f+189*.375f, .18f+195*.375f), 
+                    new(originals[(int) Indexes.SPACESEMI], .18f+192*.375f), 
+                    new(originals[(int) Indexes.L], .18f+193*.375f, .18f+195*.375f), 
+
+                    new(originals[(int) Indexes.K], .18f+196*.375f), 
+                    new(originals[(int) Indexes.J], .18f+197*.375f), 
+                    new(originals[(int) Indexes.F], .18f+198*.375f), 
+                    new(originals[(int) Indexes.D], .18f+199*.375f), 
+
+                    new(originals[(int) Indexes.K], .18f+200*.375f), 
+                    new(originals[(int) Indexes.J], .18f+201*.375f), 
+                    new(originals[(int) Indexes.F], .18f+202*.375f), 
+                    new(originals[(int) Indexes.D], .18f+203*.375f), 
+                    new(originals[(int) Indexes.S], .18f+203*.375f, .18f+209*.375f), 
+
+                    new(originals[(int) Indexes.K], .18f+204*.375f), 
+                    new(originals[(int) Indexes.J], .18f+205*.375f), 
+                    new(originals[(int) Indexes.F], .18f+206*.375f), 
+                    new(originals[(int) Indexes.D], .18f+207*.375f), 
+
+                    new(originals[(int) Indexes.L], .18f+208*.375f, .18f+214*.375f), 
+                    new(originals[(int) Indexes.K], .18f+208*.375f), 
+                    new(originals[(int) Indexes.J], .18f+209*.375f), 
+                    new(originals[(int) Indexes.F], .18f+210*.375f), 
+                    new(originals[(int) Indexes.D], .18f+211*.375f), 
+
+                    new(originals[(int) Indexes.J], .18f+213*.375f), 
+                    new(originals[(int) Indexes.F], .18f+214*.375f), 
+
+                    new(originals[(int) Indexes.D], .18f+220*.375f), 
+                    new(originals[(int) Indexes.D], .18f+220.5f*.375f), 
+                    new(originals[(int) Indexes.F], .18f+221*.375f), 
+                    new(originals[(int) Indexes.J], .18f+221.5f*.375f), 
+                    new(originals[(int) Indexes.F], .18f+222*.375f), 
+                    new(originals[(int) Indexes.D], .18f+222.5f*.375f), 
+                    new(originals[(int) Indexes.J], .18f+223*.375f), 
+                    new(originals[(int) Indexes.K], .18f+223.5f*.375f), 
+
+                    new(originals[(int) Indexes.S], .18f+218*.375f, .18f+223*.375f), 
+                    new(originals[(int) Indexes.L], .18f+218*.375f, .18f+223*.375f), 
+                    new(originals[(int) Indexes.SEMIA], .18f+218*.375f), 
+
+                    new(originals[(int) Indexes.D], .18f+224*.375f), // 224 - 256
+                    new(originals[(int) Indexes.D], .18f+225*.375f), 
+                    new(originals[(int) Indexes.D], .18f+226*.375f), 
+                    new(originals[(int) Indexes.D], .18f+227*.375f), 
+
+                    new(originals[(int) Indexes.D], .18f+228*.375f),
+                    new(originals[(int) Indexes.D], .18f+229*.375f), 
+                    new(originals[(int) Indexes.D], .18f+230*.375f), 
+                    new(originals[(int) Indexes.D], .18f+231*.375f),
+                    new(originals[(int) Indexes.F], .18f+228*.375f),
+                    new(originals[(int) Indexes.F], .18f+229*.375f), 
+                    new(originals[(int) Indexes.F], .18f+230*.375f), 
+                    new(originals[(int) Indexes.F], .18f+231*.375f), 
+
+                    new(originals[(int) Indexes.J], .18f+232*.375f),
+                    new(originals[(int) Indexes.J], .18f+233*.375f), 
+                    new(originals[(int) Indexes.J], .18f+234*.375f), 
+                    new(originals[(int) Indexes.J], .18f+235*.375f), 
+
+                    new(originals[(int) Indexes.ASEMI], .18f+236*.375f),
+                    new(originals[(int) Indexes.ASEMI], .18f+237*.375f), 
+                    new(originals[(int) Indexes.ASEMI], .18f+238*.375f), 
+                    new(originals[(int) Indexes.ASEMI], .18f+239*.375f), 
+
+                    new(originals[(int) Indexes.F], .18f+240*.375f),
+                    new(originals[(int) Indexes.F], .18f+241*.375f), 
+                    new(originals[(int) Indexes.K], .18f+242*.375f), 
+                    new(originals[(int) Indexes.K], .18f+243*.375f), 
+
+                    new(originals[(int) Indexes.ASPACE], .18f+244*.375f),
+                    new(originals[(int) Indexes.SEMISPACE], .18f+245*.375f), 
+                    new(originals[(int) Indexes.ASPACE], .18f+246*.375f), 
+                    new(originals[(int) Indexes.SEMISPACE], .18f+247*.375f), 
+
+                    new(originals[(int) Indexes.SPACESEMI], .18f+248*.375f),
+                    new(originals[(int) Indexes.ASPACE], .18f+249*.375f), 
+                    new(originals[(int) Indexes.SPACEA], .18f+250*.375f), 
+                    new(originals[(int) Indexes.SEMISPACE], .18f+251*.375f), 
+
+                    new(originals[(int) Indexes.S], .18f+252*.375f, .18f+253*.375f),
+                    new(originals[(int) Indexes.L], .18f+253*.375f, .18f+254*.375f),
+                    new(originals[(int) Indexes.S], .18f+254*.375f, .18f+255*.375f),
+                    new(originals[(int) Indexes.L], .18f+255*.375f, .18f+255*.375f),
+
+                    new(originals[(int) Indexes.S], .18f+256*.375f, .18f+259*.375f), // 256 - 384 (272)
+                    new(originals[(int) Indexes.F], .18f+258*.375f),
+                    new(originals[(int) Indexes.F], .18f+259*.375f),
+
+                    new(originals[(int) Indexes.L], .18f+260*.375f, .18f+263*.375f), // 256 - 384
+                    new(originals[(int) Indexes.K], .18f+261*.375f),
+                    new(originals[(int) Indexes.J], .18f+262*.375f),
+                    new(originals[(int) Indexes.F], .18f+263*.375f),
+                    new(originals[(int) Indexes.D], .18f+264*.375f),
+                    new(originals[(int) Indexes.F], .18f+265*.375f),
+                    new(originals[(int) Indexes.D], .18f+266*.375f),
+                    new(originals[(int) Indexes.K], .18f+267*.375f),
+                    new(originals[(int) Indexes.J], .18f+268*.375f),
+                    new(originals[(int) Indexes.J], .18f+269*.375f),
+                    new(originals[(int) Indexes.F], .18f+269*.375f),
+                    new(originals[(int) Indexes.F], .18f+271*.375f),
+                    new(originals[(int) Indexes.K], .18f+271*.375f), 
+
+                    new(originals[(int) Indexes.K], .18f+272*.375f), // (272 - 288)
+                    new(originals[(int) Indexes.J], .18f+273*.375f), 
+                    new(originals[(int) Indexes.S], .18f+273*.375f, .18f+277*.375f), 
+                    new(originals[(int) Indexes.J], .18f+275*.375f), 
+                    new(originals[(int) Indexes.D], .18f+276*.375f), 
+                    new(originals[(int) Indexes.L], .18f+275*.375f, .18f+279*.375f), 
+                    new(originals[(int) Indexes.D], .18f+277*.375f), 
+                    new(originals[(int) Indexes.F], .18f+277.5f*.375f), 
+                    new(originals[(int) Indexes.J], .18f+278*.375f), 
+                    new(originals[(int) Indexes.J], .18f+279.5f*.375f), 
+                    new(originals[(int) Indexes.F], .18f+281*.375f), 
+                    new(originals[(int) Indexes.D], .18f+282*.375f), 
+                    new(originals[(int) Indexes.D], .18f+283*.375f), 
+                    new(originals[(int) Indexes.F], .18f+284*.375f), 
+                    new(originals[(int) Indexes.F], .18f+286*.375f), 
+
+                    new(originals[(int) Indexes.ASEMI], .18f+288*.375f), // (288 - 320)
+                    new(originals[(int) Indexes.D], .18f+290*.375f), 
+                    new(originals[(int) Indexes.F], .18f+292*.375f), 
+                    new(originals[(int) Indexes.J], .18f+294*.375f), 
+                    new(originals[(int) Indexes.K], .18f+296*.375f),
+                    new(originals[(int) Indexes.K], .18f+298*.375f), 
+                    new(originals[(int) Indexes.J], .18f+300*.375f), 
+                    new(originals[(int) Indexes.F], .18f+302*.375f), 
+                    new(originals[(int) Indexes.D], .18f+304*.375f),
+                    new(originals[(int) Indexes.S], .18f+306*.375f, .18f+308*.375f), 
+                    new(originals[(int) Indexes.K], .18f+306*.375f), 
+                    new(originals[(int) Indexes.J], .18f+308*.375f), 
+                    new(originals[(int) Indexes.L], .18f+310*.375f, .18f+312*.375f), 
+                    new(originals[(int) Indexes.F], .18f+310*.375f), 
+                    new(originals[(int) Indexes.D], .18f+312*.375f),
+                    new(originals[(int) Indexes.S], .18f+314*.375f, .18f+316*.375f), 
+                    new(originals[(int) Indexes.K], .18f+314*.375f), 
+                    new(originals[(int) Indexes.J], .18f+316*.375f), 
+                    new(originals[(int) Indexes.L], .18f+318*.375f, .18f+320*.375f), 
+                    new(originals[(int) Indexes.F], .18f+318*.375f), 
+                    new(originals[(int) Indexes.D], .18f+320*.375f), 
+
+                    new(originals[(int) Indexes.SPACEA], .18f+322*.375f), // 320 - 336
+                    new(originals[(int) Indexes.ASEMI], .18f+324*.375f), 
+                    new(originals[(int) Indexes.SEMIA], .18f+326*.375f), 
+                    new(originals[(int) Indexes.SEMIA], .18f+328*.375f), 
+                    new(originals[(int) Indexes.ASEMI], .18f+330*.375f), 
+                    new(originals[(int) Indexes.ASEMI], .18f+332*.375f), 
+                    new(originals[(int) Indexes.SEMIA], .18f+333*.375f), 
+                    new(originals[(int) Indexes.ASEMI], .18f+334*.375f), 
+                    new(originals[(int) Indexes.SEMIA], .18f+335*.375f), 
+                    new(originals[(int) Indexes.SEMIA], .18f+336*.375f), 
+                    
+                    new(originals[(int) Indexes.D], .18f+336*.375f),  // 336 - 352
+                    new(originals[(int) Indexes.D], .18f+337*.375f),
+                    new(originals[(int) Indexes.J], .18f+338*.375f),
+                    new(originals[(int) Indexes.K], .18f+339*.375f),
+                    new(originals[(int) Indexes.F], .18f+340*.375f),
+                    new(originals[(int) Indexes.J], .18f+341*.375f),
+                    new(originals[(int) Indexes.D], .18f+342*.375f),
+                    new(originals[(int) Indexes.F], .18f+343*.375f),
+                    new(originals[(int) Indexes.J], .18f+344*.375f),
+                    new(originals[(int) Indexes.K], .18f+345*.375f),
+                    new(originals[(int) Indexes.J], .18f+346*.375f),
+                    new(originals[(int) Indexes.D], .18f+347*.375f),
+                    new(originals[(int) Indexes.K], .18f+348*.375f),
+                    new(originals[(int) Indexes.D], .18f+349*.375f),
+                    new(originals[(int) Indexes.F], .18f+350*.375f),
+                    new(originals[(int) Indexes.D], .18f+351*.375f),
+                    
+                    new(originals[(int) Indexes.K], .18f+352*.375f),  // 352 - 368
+                    new(originals[(int) Indexes.S], .18f+353*.375f, .18f+359*.375f),
+                    new(originals[(int) Indexes.K], .18f+353*.375f),
+                    new(originals[(int) Indexes.F], .18f+354*.375f),
+                    new(originals[(int) Indexes.L], .18f+356*.375f, .18f+358*.375f),
+                    new(originals[(int) Indexes.J], .18f+355*.375f),
+                    new(originals[(int) Indexes.D], .18f+356*.375f),
+                    new(originals[(int) Indexes.K], .18f+357*.375f),
+                    new(originals[(int) Indexes.F], .18f+358*.375f),
+                    new(originals[(int) Indexes.S], .18f+360*.375f, .18f+363*.375f),
+                    new(originals[(int) Indexes.F], .18f+359*.375f),
+                    new(originals[(int) Indexes.K], .18f+360*.375f),
+                    new(originals[(int) Indexes.D], .18f+361*.375f),
+                    new(originals[(int) Indexes.J], .18f+362*.375f),
+                    new(originals[(int) Indexes.L], .18f+359*.375f, .18f+366*.375f),
+                    new(originals[(int) Indexes.K], .18f+363*.375f),
+                    new(originals[(int) Indexes.K], .18f+364*.375f),
+                    new(originals[(int) Indexes.F], .18f+365*.375f),
+                    new(originals[(int) Indexes.D], .18f+366*.375f),
+                    new(originals[(int) Indexes.K], .18f+367*.375f), 
+                    
+                    new(originals[(int) Indexes.F], .18f+378*.375f),  // 368 - 384
+                    new(originals[(int) Indexes.J], .18f+371*.375f),
+                    new(originals[(int) Indexes.D], .18f+370*.375f),
+                    new(originals[(int) Indexes.K], .18f+383*.375f),
+                    new(originals[(int) Indexes.J], .18f+376*.375f),
+                    new(originals[(int) Indexes.K], .18f+375*.375f),
+                    new(originals[(int) Indexes.D], .18f+369*.375f),
+                    new(originals[(int) Indexes.D], .18f+384*.375f),
+                    new(originals[(int) Indexes.J], .18f+384*.375f),
+                    new(originals[(int) Indexes.SEMISPACE], .18f+368*.375f),
+                    new(originals[(int) Indexes.SPACESEMI], .18f+372*.375f),
+                    new(originals[(int) Indexes.SPACEA], .18f+373*.375f),
+                    new(originals[(int) Indexes.SEMISPACE], .18f+374*.375f),
+                    new(originals[(int) Indexes.SPACEA], .18f+375*.375f),
+                    new(originals[(int) Indexes.ASPACE], .18f+376*.375f),
+                    new(originals[(int) Indexes.SEMIA], .18f+377*.375f),
+                    new(originals[(int) Indexes.SEMISPACE], .18f+378*.375f),
+                    new(originals[(int) Indexes.SEMIA], .18f+379*.375f),
+                    new(originals[(int) Indexes.SEMISPACE], .18f+380*.375f),
+                    new(originals[(int) Indexes.ASEMI], .18f+381*.375f),
+                    new(originals[(int) Indexes.SEMIA], .18f+382*.375f), 
+                    new(originals[(int) Indexes.L], .18f+374*.375f, .18f+379*.375f),
+                    new(originals[(int) Indexes.S], .18f+372*.375f, .18f+378*.375f),
+                    new(originals[(int) Indexes.L], .18f+369*.375f, .18f+373*.375f),
+                    new(originals[(int) Indexes.S], .18f+380*.375f, .18f+381*.375f)
+                };
                 break;
         }
     }

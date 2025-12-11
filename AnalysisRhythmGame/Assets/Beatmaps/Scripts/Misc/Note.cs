@@ -8,7 +8,8 @@ public class Note
     public Vector3 scale;
     public float impactTime;
     public float releaseTime;
-    private int speed;
+    public int speed;
+    private bool slider = false;
 
     // slider constructor
     public Note(GameObject prefab, float impactTime, float releaseTime)
@@ -16,9 +17,7 @@ public class Note
         this.prefab = prefab;
         this.impactTime = impactTime;
         this.releaseTime = releaseTime;
-        speed = 40;
-        scale = new Vector3(2f,0.5f,speed * (releaseTime - impactTime)+3);
-        pos = new Vector3(prefab.transform.position.x, prefab.transform.position.y, speed*impactTime+scale.z/2);
+        slider = true;
     }
 
     // single/flick constructor
@@ -27,8 +26,23 @@ public class Note
         this.prefab = prefab;
         this.impactTime = impactTime;
         this.releaseTime = impactTime;
-        speed = 40;
+    }
+
+    public void UpdateTransform()
+    {
+        if (slider)
+        {
+            scale = new Vector3(2f,0.5f,speed * (releaseTime - impactTime)+3);
+            pos = new Vector3(prefab.transform.position.x, prefab.transform.position.y, speed*impactTime+scale.z/2);
+        } else
+        {
         scale = new Vector3(prefab.transform.localScale.x, prefab.transform.localScale.y, prefab.transform.localScale.z);
         pos = new Vector3(prefab.transform.position.x, prefab.transform.position.y, speed*impactTime+scale.z/2);
+        }
+    }
+
+    public void SetSpeed(int spd)
+    {
+        speed = spd;
     }
 }
