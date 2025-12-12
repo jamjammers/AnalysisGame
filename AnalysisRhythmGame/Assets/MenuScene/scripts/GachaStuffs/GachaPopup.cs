@@ -12,7 +12,6 @@ public class GachaPopup : MonoBehaviour
     {
         gachaManager = transform.parent.GetComponent<GachaManager>();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -36,5 +35,12 @@ public class GachaPopup : MonoBehaviour
         temp.a = 3f;
         thing.color = temp;
         Debug.Log("Pulled: " + gachaCard.name + " of rarity " + gachaCard.rarity);
+    }
+    public void hide()
+    {
+        Color temp = thing.color;
+        temp.a = 0;
+        thing.color = temp;
+        
     }
 }

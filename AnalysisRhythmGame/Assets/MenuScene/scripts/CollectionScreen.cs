@@ -37,5 +37,6 @@ public class CollectionScreen : BasicScreen
         Vector3 position = new Vector3(index % cols, (index / cols), 0) * cardSpacing + startPos;
 
         frame.GetComponent<GachaDisplay>().setUp(gachaCard.texture, position, gameObject);
+        index++;
     }
 }

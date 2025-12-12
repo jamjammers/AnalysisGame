@@ -29,12 +29,11 @@ public class Gacha : MonoBehaviour
         { GachaCard.GachaRarity.LEGENDARY, new List<GachaCard>() }
     };
 
-    GachaCard ticket;
-
+    static CollectionScreen collectionScreen;
     bool debugMode = true;
     public void Start()
     {
-
+        collectionScreen = GameObject.Find("Collection").GetComponent<CollectionScreen>();
         loadTextures();
         loadCards();
 
@@ -44,9 +43,10 @@ public class Gacha : MonoBehaviour
         }
     }
 
+//loading (only needs to be done once)
     public void loadTextures()
     {
-        if (textures.Count != 0) return;
+        if (textures.Count != 0 || allGachaCards.Count != 0) return;
         Debug.Log("Loading Textures");
         foreach (Texture2D t in Resources.LoadAll<Texture2D>("GachaCards/"))
         {
@@ -147,11 +147,13 @@ public class Gacha : MonoBehaviour
 
         double pullValue = Random.Range(0f, 1f);
         GachaCard.GachaRarity rarity = getGachaRarity(false, pullValue);
+        
         int randValue = Random.Range(0, rarityDict[rarity].Count);
+        GachaCard pulledCard = rarityDict[rarity][randValue];
 
-        Inventory.addCard(rarityDict[rarity][randValue]);
-
-        return rarityDict[rarity][randValue];
+        Inventory.addCard(pulledCard);
+        collectionScreen.addCard(pulledCard);
+        return pulledCard;
     }
 
     static GachaCard.GachaRarity getGachaRarity(bool food, double pullValue)
@@ -162,13 +164,16 @@ public class Gacha : MonoBehaviour
             {
                 return GachaCard.GachaRarity.FIVE_STAR;
             }
-            else if (pullValue < 0.2f)
+            else if (pullValue < 0.1f)
             {
                 return GachaCard.GachaRarity.FOUR_STAR;
             }
-            else
+            else if (pullValue < 0.5f)
             {
                 return GachaCard.GachaRarity.THREE_STAR;
+            } else
+            {
+                return GachaCard.GachaRarity.FOOD_TICKET;
             }
         }
 

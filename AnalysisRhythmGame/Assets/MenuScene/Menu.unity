@@ -956,7 +956,7 @@ GameObject:
   - component: {fileID: 235979214}
   - component: {fileID: 235979213}
   m_Layer: 0
-  m_Name: manager
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -974,12 +974,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89206a7ffd6804c8da09b5426855219f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  textures:
-  - {fileID: 2800000, guid: da5d087b8e2674241a64ddca055d6728, type: 3}
   names:
   - qr
   rarities: 00000000
-  ticketTexture: {fileID: 0}
 --- !u!4 &235979214
 Transform:
   m_ObjectHideFlags: 0
@@ -1279,7 +1276,7 @@ GameObject:
   - component: {fileID: 354134014}
   - component: {fileID: 354134013}
   - component: {fileID: 354134012}
-  - component: {fileID: 354134011}
+  - component: {fileID: 354134016}
   m_Layer: 5
   m_Name: Collection
   m_TagString: Untagged
@@ -1287,18 +1284,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &354134011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 354134010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c263228063e0641f68066659da9dd821, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!114 &354134012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1375,7 +1360,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1042845706}
-  - {fileID: 556024827}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1383,6 +1367,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &354134016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354134010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac9432893e714516b5225aa1fc9d007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectionScreen
+  GachaCardPrefab: {fileID: 2904421773533343216, guid: 91b632370390449d29cbb5f28de9e19f, type: 3}
+  cardSpacing: 75
+  startPos: {x: -342.5, y: 90, z: 0}
+  cols: 9
+  rows: 3
 --- !u!1 &363087310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1523,7 +1524,7 @@ GameObject:
   - component: {fileID: 415202114}
   - component: {fileID: 415202113}
   m_Layer: 5
-  m_Name: gacha guy
+  m_Name: Gacha Pop-up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1561,7 +1562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::gachaguy
   thing: {fileID: 415202114}
-  manager: {fileID: 0}
+  gachaManager: {fileID: 0}
 --- !u!114 &415202114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1706,7 +1707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &437224455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1818,7 +1819,7 @@ GameObject:
   - component: {fileID: 470555335}
   - component: {fileID: 470555334}
   m_Layer: 5
-  m_Name: pull
+  m_Name: pull button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2353,91 +2354,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555440463}
-  m_CullTransparentMesh: 1
---- !u!1 &556024826
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 556024827}
-  - component: {fileID: 556024830}
-  - component: {fileID: 556024829}
-  - component: {fileID: 556024828}
-  m_Layer: 5
-  m_Name: Card Display
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &556024827
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 556024826}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 354134015}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &556024828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 556024826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 265d3ceb480144b45825dfd00a51be15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GachaDisplay
---- !u!114 &556024829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 556024826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 0}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &556024830
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 556024826}
   m_CullTransparentMesh: 1
 --- !u!1 &579527641
 GameObject:
@@ -3805,8 +3721,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 354134011}
-        m_TargetAssemblyTypeName: BasicScreen, Assembly-CSharp
+      - m_Target: {fileID: 354134016}
+        m_TargetAssemblyTypeName: CollectionScreen, Assembly-CSharp
         m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
@@ -4441,8 +4357,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 354134011}
-        m_TargetAssemblyTypeName: BasicScreen, Assembly-CSharp
+      - m_Target: {fileID: 354134016}
+        m_TargetAssemblyTypeName: CollectionScreen, Assembly-CSharp
         m_MethodName: Show
         m_Mode: 1
         m_Arguments:
@@ -5114,6 +5030,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 415202113}
+        m_TargetAssemblyTypeName: GachaPopup, Assembly-CSharp
+        m_MethodName: hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1675392511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5583,7 +5511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1909901395
 MonoBehaviour:
   m_ObjectHideFlags: 0

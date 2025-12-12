@@ -12,7 +12,6 @@ public class GachaBanner : MonoBehaviour
     void Start()
     {
         rt = GetComponent<RectTransform>();
-        Debug.Log(rt.anchoredPosition);
     }
 
     // Update is called once per frame
