@@ -42,7 +42,7 @@ public static class Buffs
             Coal: random note speed
 
         Curse Tier: debuffs (with a slight counteracting buff)
-            cockroach and james: idk
+            cockroach sandwich: idk
             mud pie: requires more precise timing + other things (think hard rock)
 
         Trash Tier: light vision debuff
@@ -63,7 +63,7 @@ public static class Buffs
             ramen: slightly increases something
             sushi: overall score boost
             
-        rainbow tier: ultimate buffs
+        legendary tier: ultimate buffs
             rainbow food: does all of the drop rate, minor and major buffs (at half rate)
     */
     public static Dictionary<string, int> activeBuffs = new Dictionary<string, int>()

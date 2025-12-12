@@ -30,8 +30,7 @@ public class GachaCard
         UNCOMMON,
         RARE,
         EPIC,
-        LEGENDARY,
-        MYTHIC
+        LEGENDARY
 
     }
 }

@@ -52,4 +52,8 @@ public class GachaManager : MonoBehaviour
             nextButton.SetActive(true);
         }
     }
+    public GameObject getCurrentBanner()
+    {
+        return Banners[selected];
+    }
 }

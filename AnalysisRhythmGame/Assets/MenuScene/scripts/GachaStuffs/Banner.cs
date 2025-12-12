@@ -4,11 +4,14 @@ public class Banner : MonoBehaviour
 {
     public int direction = 0;
     public bool isMain = false;
+
+    [SerializeField]
+    public BannerType bannerType {get;} = BannerType.REGULAR;
     RectTransform rt;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rt = this.GetComponent<RectTransform>();
+        rt = GetComponent<RectTransform>();
         Debug.Log(rt.anchoredPosition);
     }
 
@@ -45,5 +48,10 @@ public class Banner : MonoBehaviour
         }
         direction = dir;
         isMain = main;
+    }
+    public enum BannerType
+    {
+        REGULAR,
+        FOOD
     }
 }

@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/MenuScene/Menu.unity
     guid: 702345e7e0ae94ff184843b3ff1a00b6
   - enabled: 1
+    path: Assets/Beatmaps/Nadir Beatmap.unity
+    guid: 8afb91a51a0034be0a7ee3b19b70e507
+  - enabled: 1
     path: Assets/Beatmaps/Colorful Chaos Beatmap.unity
     guid: 439faaef4d5b34a4287eb5e6d42599db
   - enabled: 1
-    path: Assets/Beatmaps/Nadir Beatmap.unity
-    guid: 8afb91a51a0034be0a7ee3b19b70e507
+    path: Assets/Beatmaps/Scorpio Beatmap.unity
+    guid: e054729dca6a8ef49891f972ada375a7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
