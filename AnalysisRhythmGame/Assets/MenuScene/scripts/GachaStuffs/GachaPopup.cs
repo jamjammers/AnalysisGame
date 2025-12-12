@@ -1,13 +1,16 @@
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEditor.Rendering;
 
 public class GachaPopup : MonoBehaviour
 {
 
     public RawImage thing;
-    public GameObject manager;
+
+    public GachaManager gachaManager;
     void Start()
     {
+        gachaManager = transform.parent.GetComponent<GachaManager>();
     }
 
     // Update is called once per frame
@@ -21,14 +24,17 @@ public class GachaPopup : MonoBehaviour
         }
     }
     public void pull()
-    {        
-        GachaCard gachaCard = Gacha.pull();
+    {   
+        if(thing.color.a > 2f) return;
+        Debug.Log("Pulling from "+ gachaManager.getBannerType().name());
+        GachaCard gachaCard = Gacha.pull(gachaManager.getBannerType());
         if (gachaCard == null) return;
         thing.texture = gachaCard.texture;
 
         // set alpha to 5 so that it like fades out
         Color temp = thing.color;
-        temp.a = 5f;
+        temp.a = 3f;
         thing.color = temp;
+        Debug.Log("Pulled: " + gachaCard.name + " of rarity " + gachaCard.rarity);
     }
 }

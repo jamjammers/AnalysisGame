@@ -7,15 +7,10 @@ public class Gacha : MonoBehaviour
     [SerializeField] string[] names;
     [SerializeField] GachaCard.GachaRarity[] rarities;
 
-    [SerializeField] Texture2D ticketTexture;
 
     public static List<GachaCard> allGachaCards = new List<GachaCard>();
-    public static List<GachaCard> fiveStars = new List<GachaCard>();
-    public static List<GachaCard> fourStars = new List<GachaCard>();
-    public static List<GachaCard> threeStars = new List<GachaCard>();
-    public static List<GachaCard> foods = new List<GachaCard>();
 
-    public static Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>();
+    Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>();
 
     public static Dictionary<GachaCard.GachaRarity, List<GachaCard>> rarityDict = new Dictionary<GachaCard.GachaRarity, List<GachaCard>>()
     {
@@ -34,15 +29,21 @@ public class Gacha : MonoBehaviour
         { GachaCard.GachaRarity.LEGENDARY, new List<GachaCard>() }
     };
 
-    public static GachaCard ticket;
+    GachaCard ticket;
 
     bool debugMode = true;
     public void Start()
     {
-        
+
         loadTextures();
         loadCards();
+
+        if (debugMode)
+        {
+            Inventory.addPulls(10000);
+        }
     }
+
     public void loadTextures()
     {
         if (textures.Count != 0) return;
@@ -50,7 +51,7 @@ public class Gacha : MonoBehaviour
         foreach (Texture2D t in Resources.LoadAll<Texture2D>("GachaCards/"))
         {
             textures[t.name] = t;
-            if(debugMode) Debug.Log("Loaded texture: " + t.name);
+            if (debugMode) Debug.Log("Loaded texture: " + t.name);
         }
         Debug.Log("Loaded Textures");
     }
@@ -61,7 +62,7 @@ public class Gacha : MonoBehaviour
         Debug.Log("Loading Gacha Cards");
 
         /* Gacha Cards */
-        
+
         //Three stars
         new GachaCard("Angry Cat", GachaCard.GachaRarity.THREE_STAR, textures["angry_cat"]);
         new GachaCard("Dizzy Cat", GachaCard.GachaRarity.THREE_STAR, textures["dizzy_cat"]);
@@ -87,7 +88,7 @@ public class Gacha : MonoBehaviour
 
         //Coal
         new GachaCard("Coal", GachaCard.GachaRarity.COAL, textures["coal"]);
-        
+
         //Curse
         new GachaCard("Mud Pie", GachaCard.GachaRarity.CURSE, textures["mud_pie"]);
         new GachaCard("Cockroach Sandwich", GachaCard.GachaRarity.CURSE, textures["cockroach_sandwich"]);
@@ -117,62 +118,92 @@ public class Gacha : MonoBehaviour
         // Legendary
         new GachaCard("Rainbow Food", GachaCard.GachaRarity.LEGENDARY, textures["rainbow_food"]);
 
-        ticket = new GachaCard("Gacha Ticket", GachaCard.GachaRarity.FOOD_TICKET, ticketTexture);
+        // food ticket!
+        new GachaCard("Gacha Ticket", GachaCard.GachaRarity.FOOD_TICKET, textures["food_ticket"]);
+    }
+
+
+    public static GachaCard pull(BannerType bannerType)
+    {
+        if (bannerType == BannerType.FOOD)
+        {
+            return foodPull();
+        }
+        return characterPull();
+
     }
 
     public static GachaCard foodPull()
     {
         if (Inventory.ticketPull() == false) return null;
-        double pullChance = Utilities.Normal();
 
-        GachaCard pulled;
-        if (pullChance < 0.5f)
-        {
-            pulled = foods[Random.Range(0, foods.Count)];
-        }
-        else if (pullChance < 0.8f)
-        {
-            pulled = threeStars[Random.Range(0, threeStars.Count)];
-        }
-        else if (pullChance < 0.95f)
-        {
-            pulled = fourStars[Random.Range(0, fourStars.Count)];
-        }
-        else
-        {
-            pulled = fiveStars[Random.Range(0, fiveStars.Count)];
-        }
-        return pulled;
+        double pullValue = Utilities.Normal();
+        GachaCard.GachaRarity rarity = getGachaRarity(true, pullValue);
+        return rarityDict[rarity][Random.Range(0, rarityDict[rarity].Count)];
     }
-
-    public static GachaCard pull()
+    public static GachaCard characterPull()
     {
         if (Inventory.characterPull() == false) return null;
 
-        double pullChance = Random.Range(0f, 1f);
+        double pullValue = Random.Range(0f, 1f);
+        GachaCard.GachaRarity rarity = getGachaRarity(false, pullValue);
+        int randValue = Random.Range(0, rarityDict[rarity].Count);
 
-        if (pullChance >= 0.5f)
+        Inventory.addCard(rarityDict[rarity][randValue]);
+
+        return rarityDict[rarity][randValue];
+    }
+
+    static GachaCard.GachaRarity getGachaRarity(bool food, double pullValue)
+    {
+        if (!food)
         {
-            Inventory.addTicket();
-            return ticket;
+            if (pullValue < 0.01f)
+            {
+                return GachaCard.GachaRarity.FIVE_STAR;
+            }
+            else if (pullValue < 0.2f)
+            {
+                return GachaCard.GachaRarity.FOUR_STAR;
+            }
+            else
+            {
+                return GachaCard.GachaRarity.THREE_STAR;
+            }
         }
 
-        GachaCard pulled;
-
-        if (pullChance < 0.01f)
+        if(pullValue < -0.6)
         {
-            pulled = fiveStars[Random.Range(0, fiveStars.Count)];
+            return GachaCard.GachaRarity.COAL;
+        } 
+        else if (pullValue < -0.4f)
+        {
+            return GachaCard.GachaRarity.CURSE;
         }
-        else if (pullChance < 0.2f)
+        else if (pullValue < -0.2f)
         {
-            pulled = fourStars[Random.Range(0, fourStars.Count)];
+            return GachaCard.GachaRarity.TRASH;
+        }
+        else if (pullValue <= 0f)
+        {
+            return GachaCard.GachaRarity.COMMON;
+        }
+        else if (pullValue <= 0.2f)
+        {
+            return GachaCard.GachaRarity.UNCOMMON;
+        }
+        else if (pullValue <= 0.4f)
+        {
+            return GachaCard.GachaRarity.RARE;
+        }
+        else if (pullValue <= 0.6f)
+        {
+            return GachaCard.GachaRarity.EPIC;
         }
         else
         {
-            pulled = threeStars[Random.Range(0, threeStars.Count)];
+            return GachaCard.GachaRarity.LEGENDARY;
         }
 
-        Inventory.addCard(pulled);
-        return pulled;
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Inventory : MonoBehaviour
+public static class Inventory
 {
     static int pulls = 1;
     static int tickets = 1;
@@ -11,13 +11,7 @@ public class Inventory : MonoBehaviour
     static float exp = 0;
     static List<GachaCard> cards = new List<GachaCard>();
     static bool loaded = false;
-
-    public void Start()
-    {
-        if (loaded) return;
-        loaded = true;
-    }
-
+    
     public static bool characterPull()
     {
         if (pulls <= 0) return false;
@@ -30,7 +24,10 @@ public class Inventory : MonoBehaviour
         tickets--;
         return true;
     }
-    public static void addCard(GachaCard gachaCard) { cards.Add(gachaCard); }
+    public static void addCard(GachaCard gachaCard) { 
+        if(cards.Contains(gachaCard)) return;
+        cards.Add(gachaCard); 
+        }
     public static List<GachaCard> getCards() { return cards; }
 
     public static void addPulls(int amount)

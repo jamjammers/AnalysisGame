@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Banner : MonoBehaviour
+public class GachaBanner : MonoBehaviour
 {
     public int direction = 0;
     public bool isMain = false;
 
     [SerializeField]
-    public BannerType bannerType {get;} = BannerType.REGULAR;
+    public BannerType bannerType {get;} = BannerType.CHARACTER;
     RectTransform rt;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -42,16 +42,25 @@ public class Banner : MonoBehaviour
         {
             rt.anchoredPosition = new Vector3(800 * -dir / Mathf.Abs(dir) + offset, 0, 0);
         }
-        else
-        {
-            // rt.anchoredPosition = new Vector3(-dir / Mathf.Abs(dir) * 800,0,0);
-        }
         direction = dir;
         isMain = main;
     }
-    public enum BannerType
+}
+
+public enum BannerType
+{
+    CHARACTER,
+    FOOD
+}
+public static class BannerTypeExtensions
+{
+    public static string name(this BannerType t)
     {
-        REGULAR,
-        FOOD
+        switch (t)
+        {
+            case BannerType.CHARACTER: return "Character Banner";
+            case BannerType.FOOD:    return "Food Banner";
+            default:                 return t.ToString();
+        }
     }
 }

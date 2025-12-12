@@ -9,8 +9,12 @@ public class CollectionScreen : BasicScreen
 
     public float cardSpacing = 85f;
     public Vector3 startPos = new Vector3(-342.5f, 90, 0);
-    public float cols = 9;
-    public float rows = 3;
+    public int cols = 9;
+    public int rows = 3;
+
+
+    int index = 0;
+    bool debugMode = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,12 +30,12 @@ public class CollectionScreen : BasicScreen
     public new void Show()
     {
         base.Show();
-        gameObject.SetActive(true);
-        List<GachaCard> cardList = Inventory.getCards();
-        for (int i = 0; i < cardList.Count; i++)
-        {
-            GameObject frame = Instantiate(GachaCardPrefab, new Vector3(i % cols, (int)(i / cols), 0) * cardSpacing + startPos, Quaternion.identity, transform);
-            frame.GetComponent<GachaDisplay>().setImage(cardList[i].texture);
-        }
+    }
+    public void addCard(GachaCard gachaCard)
+    {
+        GameObject frame = Instantiate(GachaCardPrefab, transform);
+        Vector3 position = new Vector3(index % cols, (index / cols), 0) * cardSpacing + startPos;
+
+        frame.GetComponent<GachaDisplay>().setUp(gachaCard.texture, position, gameObject);
     }
 }

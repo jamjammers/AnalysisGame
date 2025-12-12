@@ -6,10 +6,11 @@ public class GachaDisplay : MonoBehaviour
     public GameObject Collection;
     void Start()
     {
-        Collection = transform.parent.gameObject;
     }
-    public void setImage(Texture2D img)
+    public void setUp(Texture2D img, Vector3 position, GameObject collection)
     {
-        GetComponent<UnityEngine.UI.RawImage>().texture = img;
+        GetComponent<RectTransform>().anchoredPosition = position;
+        transform.GetChild(0).GetComponent<UnityEngine.UI.RawImage>().texture = img;
+        Collection = collection;
     }
 }
