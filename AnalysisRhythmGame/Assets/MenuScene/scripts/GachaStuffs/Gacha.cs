@@ -30,7 +30,7 @@ public class Gacha : MonoBehaviour
     };
 
     static CollectionScreen collectionScreen;
-    bool debugMode = true;
+    static bool debugMode = true;
     public void Start()
     {
         collectionScreen = FindObjectsByType<CollectionScreen>(FindObjectsInactive.Include, FindObjectsSortMode.None)[0];
@@ -143,11 +143,19 @@ public class Gacha : MonoBehaviour
 
         int randValue = UnityEngine.Random.Range(0, rarityDict[rarity].Count);
         GachaCard pulledCard = rarityDict[rarity][randValue];
-
-        Buffs.foodBuffs[pulledCard.name] = Math.Clamp(Buffs.foodBuffs[pulledCard.name] + 6, 0, 9);
-        Debug.Log("Buff " + pulledCard.name + " duration increased to " + Buffs.foodBuffs[pulledCard.name]);
-        Debug.Log("Food buffs:\n" + Buffs.foodBuffString());
-
+        if(pulledCard.rarity == GachaCard.GachaRarity.COMMON)
+        {
+            if(debugMode)
+                Debug.Log("Pulled common food: " + pulledCard.name);
+            Inventory.gainExp(pulledCard.name == "Cat Food"?25:75);
+            
+        }else{
+            Buffs.foodBuffs[pulledCard.name] = Math.Clamp(Buffs.foodBuffs[pulledCard.name] + 6, 0, 9);
+            if(debugMode){
+                Debug.Log("Buff " + pulledCard.name + " duration increased to " + Buffs.foodBuffs[pulledCard.name]);
+                Debug.Log("Food buffs:\n" + Buffs.foodBuffString());
+            }
+        }
         return pulledCard;
     }
     public static GachaCard characterPull()

@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class endcontroller : MonoBehaviour
 {
@@ -46,16 +47,9 @@ public class endcontroller : MonoBehaviour
         expText.GetComponent<TextMeshProUGUI>().text = "Exp Gained: \n" + gain.ToString();
         Inventory.gainExp(gain);
 
-        int count = (int)Mathf.Floor(10 * perfect / (perfect + great + good + miss + 1));
-        int pull = 0;
-        for (int i = 0; i < count; i++)
+        if(Buffs.team[0].name == "Fat Cat")
         {
-            if (Random.Range(0f, 1f) < 0.1)
-            {
-                pull++;
-            }
+            Inventory.addTicket();   
         }
-        pullText.GetComponent<TextMeshProUGUI>().text = "Pulls recieved: \n" + pull.ToString();
-        Inventory.addPulls(pull);
     }
 }
