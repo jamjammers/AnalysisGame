@@ -38,6 +38,10 @@ public static class Inventory
     {
         tickets++;
     }
+    public static void addTickets(int amount)
+    {
+        tickets += amount;
+    }
     public static void gainExp(float amount)
     {
         exp += amount;

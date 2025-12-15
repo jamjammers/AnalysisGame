@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-
+using System;
 public class Gacha : MonoBehaviour
 {
     // public int[] rarities;
@@ -33,13 +33,14 @@ public class Gacha : MonoBehaviour
     bool debugMode = true;
     public void Start()
     {
-        collectionScreen = GameObject.Find("Collection").GetComponent<CollectionScreen>();
+        collectionScreen = FindObjectsByType<CollectionScreen>(FindObjectsInactive.Include, FindObjectsSortMode.None)[0];
         loadTextures();
         loadCards();
 
         if (debugMode)
         {
             Inventory.addPulls(10000);
+            Inventory.addTickets(10000);
         }
     }
 
@@ -123,9 +124,9 @@ public class Gacha : MonoBehaviour
     }
 
 
-    public static GachaCard pull(BannerType bannerType)
+    public static GachaCard pull(GachaBanner.BannerType bannerType)
     {
-        if (bannerType == BannerType.FOOD)
+        if (bannerType == GachaBanner.BannerType.FOOD)
         {
             return foodPull();
         }
@@ -139,20 +140,29 @@ public class Gacha : MonoBehaviour
 
         double pullValue = Utilities.Normal();
         GachaCard.GachaRarity rarity = getGachaRarity(true, pullValue);
-        return rarityDict[rarity][Random.Range(0, rarityDict[rarity].Count)];
+
+        int randValue = UnityEngine.Random.Range(0, rarityDict[rarity].Count);
+        GachaCard pulledCard = rarityDict[rarity][randValue];
+
+        Buffs.foodBuffs[pulledCard.name] = Math.Clamp(Buffs.foodBuffs[pulledCard.name] + 6, 0, 9);
+        Debug.Log("Buff " + pulledCard.name + " duration increased to " + Buffs.foodBuffs[pulledCard.name]);
+        Debug.Log("Food buffs:\n" + Buffs.foodBuffString());
+
+        return pulledCard;
     }
     public static GachaCard characterPull()
     {
         if (Inventory.characterPull() == false) return null;
 
-        double pullValue = Random.Range(0f, 1f);
+        double pullValue = UnityEngine.Random.Range(0f, 1f);
         GachaCard.GachaRarity rarity = getGachaRarity(false, pullValue);
         
-        int randValue = Random.Range(0, rarityDict[rarity].Count);
+        int randValue = UnityEngine.Random.Range(0, rarityDict[rarity].Count);
         GachaCard pulledCard = rarityDict[rarity][randValue];
 
         Inventory.addCard(pulledCard);
         collectionScreen.addCard(pulledCard);
+        
         return pulledCard;
     }
 

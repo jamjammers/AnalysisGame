@@ -1,6 +1,9 @@
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEditor.Rendering;
+using System.IO;
+using System.Linq;
+using NUnit.Framework.Constraints;
 
 public class GachaPopup : MonoBehaviour
 {
@@ -8,8 +11,11 @@ public class GachaPopup : MonoBehaviour
     public RawImage thing;
 
     public GachaManager gachaManager;
+
+    public ParticleSystem particles;
     void Start()
     {
+        particles = FindObjectsByType<ParticleSystem>(FindObjectsInactive.Include, FindObjectsSortMode.None).FirstOrDefault(p => p.transform.parent != null && p.transform.parent.name == "Gacha");
         gachaManager = transform.parent.GetComponent<GachaManager>();
     }
     // Update is called once per frame
@@ -30,7 +36,24 @@ public class GachaPopup : MonoBehaviour
         if (gachaCard == null) return;
         thing.texture = gachaCard.texture;
 
-        // set alpha to 5 so that it like fades out
+        particles.Play();
+        Gradient grad = new Gradient();
+        grad.SetKeys( 
+            new GradientColorKey[] { 
+                new GradientColorKey(Color.white, 0.0f), 
+                new GradientColorKey(false? new Color(00,0xD6,0xFF): new Color(0xFF, 0xE1, 0), 1.0f) 
+                }, 
+            new GradientAlphaKey[] { 
+                new GradientAlphaKey(0.8f, 0.0f), 
+                new GradientAlphaKey(1.0f, 1.0f) 
+                }
+            );
+
+        var colorOverLifetime = particles.colorOverLifetime;
+        colorOverLifetime.color = grad;
+
+
+        // set alpha to 3 so that it like fades out
         Color temp = thing.color;
         temp.a = 3f;
         thing.color = temp;
