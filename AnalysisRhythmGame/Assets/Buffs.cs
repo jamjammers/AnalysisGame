@@ -66,32 +66,42 @@ public static class Buffs
         legendary tier: ultimate buffs
             rainbow food: does all of the drop rate, minor and major buffs (at half rate)
     */
-    public static Dictionary<string, int> activeBuffs = new Dictionary<string, int>()
+    public static Dictionary<string, int> foodBuffs = new Dictionary<string, int>()
     {
         //Coal tier
-        {"coal",0},
+        {"Coal",0},
         //Curse tier
-        {"cockroach",0}, {"mudpie",0},
+        {"Cockroach Sandwich",0}, {"Mud Pie",0},
         //Trash tier
-        {"fastFoodWrapper",0},
+        {"Fast Food Wrappers",0},
         //Uncommon tier
-        {"ketchup",0}, {"salt",0}, {"soysauce",0},
+        {"Ketchup",0}, {"Salt",0}, {"Soy Sauce",0},
         //Rare tier
-        {"burger",0}, {"chickenNuggets",0},{"fries",0},
+        {"Burger",0}, {"Chicken Nuggets",0},{"Fries",0},
         //Epic tier
-        {"boba",0}, {"ramen",0}, {"sushi",0},
+        {"Boba",0}, {"Ramen",0}, {"Sushi",0},
         //Rainbow tier
-        {"rainbow",0}
+        {"Rainbow Food",0}
     };
+
+    public static string foodBuffString()
+    {
+        string result = "";
+        foreach ( var kvp in foodBuffs )
+        {
+            result += kvp.Key + ": " + kvp.Value + " turns left\n";
+        }
+        return result;
+    }
 
     public static void DecreaseBuffDurations()
     {
-        List<string> keys = new List<string>(activeBuffs.Keys);
+        List<string> keys = new List<string>(foodBuffs.Keys);
         foreach (string key in keys)
         {
-            if (activeBuffs[key] > 0)
+            if (foodBuffs[key] > 0)
             {
-                activeBuffs[key]--;
+                foodBuffs[key]--;
             }
         }
     }

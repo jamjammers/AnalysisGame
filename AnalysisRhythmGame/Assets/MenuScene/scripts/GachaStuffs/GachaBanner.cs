@@ -6,7 +6,8 @@ public class GachaBanner : MonoBehaviour
     public bool isMain = false;
 
     [SerializeField]
-    public BannerType bannerType {get;} = BannerType.CHARACTER;
+    
+    public BannerType bannerType = BannerType.CHARACTER;
     RectTransform rt;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,21 +45,21 @@ public class GachaBanner : MonoBehaviour
         direction = dir;
         isMain = main;
     }
-}
-
 public enum BannerType
 {
     CHARACTER,
     FOOD
 }
+}
+
 public static class BannerTypeExtensions
 {
-    public static string name(this BannerType t)
+    public static string name(this GachaBanner.BannerType t)
     {
         switch (t)
         {
-            case BannerType.CHARACTER: return "Character Banner";
-            case BannerType.FOOD:    return "Food Banner";
+            case GachaBanner.BannerType.CHARACTER: return "Character Banner";
+            case GachaBanner.BannerType.FOOD:    return "Food Banner";
             default:                 return t.ToString();
         }
     }

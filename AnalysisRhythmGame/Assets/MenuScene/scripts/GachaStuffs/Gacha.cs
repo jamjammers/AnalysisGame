@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
-
+using System;
+using Unity.VisualScripting;
 public class Gacha : MonoBehaviour
 {
     // public int[] rarities;
@@ -12,7 +13,8 @@ public class Gacha : MonoBehaviour
 
     Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>();
 
-    public static Dictionary<GachaCard.GachaRarity, List<GachaCard>> rarityDict = new Dictionary<GachaCard.GachaRarity, List<GachaCard>>()
+    public static Dictionary<GachaCard.GachaRarity, List<GachaCard>> rarityDict =
+                                new Dictionary<GachaCard.GachaRarity, List<GachaCard>>()
     {
         { GachaCard.GachaRarity.FIVE_STAR, new List<GachaCard>() },
         { GachaCard.GachaRarity.FOUR_STAR, new List<GachaCard>() },
@@ -30,20 +32,21 @@ public class Gacha : MonoBehaviour
     };
 
     static CollectionScreen collectionScreen;
-    bool debugMode = true;
+    static bool debugMode = true;
     public void Start()
     {
-        collectionScreen = GameObject.Find("Collection").GetComponent<CollectionScreen>();
+        collectionScreen = FindObjectsByType<CollectionScreen>(FindObjectsInactive.Include, FindObjectsSortMode.None)[0];
         loadTextures();
         loadCards();
 
         if (debugMode)
         {
             Inventory.addPulls(10000);
+            Inventory.addTickets(10000);
         }
     }
 
-//loading (only needs to be done once)
+    //loading (only needs to be done once)
     public void loadTextures()
     {
         if (textures.Count != 0 || allGachaCards.Count != 0) return;
@@ -123,64 +126,165 @@ public class Gacha : MonoBehaviour
     }
 
 
-    public static GachaCard pull(BannerType bannerType)
+    //Gacha card is the thing to display, bool is if there was a crit/bonus
+    public static (GachaCard, bool) pull(GachaBanner.BannerType bannerType, bool risky = false)
     {
-        if (bannerType == BannerType.FOOD)
+        if (bannerType == GachaBanner.BannerType.FOOD)
         {
-            return foodPull();
+            return foodPull(risky);
         }
         return characterPull();
 
     }
 
-    public static GachaCard foodPull()
+    public static (GachaCard, bool) foodPull(bool risky = false)
     {
-        if (Inventory.ticketPull() == false) return null;
+        if (Inventory.ticketPull() == false) return (null, false);
 
-        double pullValue = Utilities.Normal();
-        GachaCard.GachaRarity rarity = getGachaRarity(true, pullValue);
-        return rarityDict[rarity][Random.Range(0, rarityDict[rarity].Count)];
+        double pullValue = Utilities.Normal(risky ? 0.465 : 0.365, 0);
+        bool guarentee = Inventory.triggerGuarentee();
+        if (guarentee)
+        {
+            pullValue = UnityEngine.Random.Range(0f, 1f);
+        }
+
+        GachaCard.GachaRarity rarity = getGachaRarity(true, pullValue, guarentee);
+
+        int randValue = UnityEngine.Random.Range(0, rarityDict[rarity].Count);
+        GachaCard pulledCard = rarityDict[rarity][randValue];
+
+        //special case for if its a common which only gives exp instead of adding buffs maybe put this into the buffs class later
+        if (pulledCard.rarity == GachaCard.GachaRarity.COMMON)
+        {
+            if (debugMode)
+                Debug.Log("Pulled common food: " + pulledCard.name);
+            Inventory.gainExp(pulledCard.name == "Cat Food" ? 25 : 75);
+        }
+        else
+        {
+
+            Buffs.foodBuffs[pulledCard.name] = Math.Clamp(Buffs.foodBuffs[pulledCard.name] + 6, 0, 9);
+
+            if (debugMode)
+            {
+                Debug.Log("Buff " + pulledCard.name + " duration increased to " + Buffs.foodBuffs[pulledCard.name]);
+                Debug.Log("Food buffs:\n" + Buffs.foodBuffString());
+            }
+        }
+        bool isOuter = pulledCard.rarity == GachaCard.GachaRarity.LEGENDARY || pulledCard.rarity == GachaCard.GachaRarity.COAL;
+        bool bonus = guarentee || UnityEngine.Random.Range(0f, 1f) <= (isOuter ? 0.5f : 0.05f);
+
+        if (bonus)
+        {
+            Inventory.gainExp(500);
+        }
+        Debug.Log("bonus: " + bonus + " isOuter: " + isOuter);
+        return (pulledCard, bonus);
+
     }
-    public static GachaCard characterPull()
-    {
-        if (Inventory.characterPull() == false) return null;
 
-        double pullValue = Random.Range(0f, 1f);
+
+    public static (GachaCard, bool) characterPull()
+    {
+        if (Inventory.characterPull() == false) return (null, false);
+
+        bool critical = UnityEngine.Random.Range(0f, 1f) <= 1f / 12f;
+        double pullValue = UnityEngine.Random.Range(0f, 1f);
         GachaCard.GachaRarity rarity = getGachaRarity(false, pullValue);
-        
-        int randValue = Random.Range(0, rarityDict[rarity].Count);
+
+        int randValue = UnityEngine.Random.Range(0, rarityDict[rarity].Count);
         GachaCard pulledCard = rarityDict[rarity][randValue];
 
         Inventory.addCard(pulledCard);
         collectionScreen.addCard(pulledCard);
-        return pulledCard;
+
+        return (pulledCard, critical);
     }
 
-    static GachaCard.GachaRarity getGachaRarity(bool food, double pullValue)
+    static GachaCard.GachaRarity getGachaRarity(bool food, double pullValue, bool special = false, bool risky = false)
     {
         if (!food)
         {
-            if (pullValue < 0.01f)
+            float mod = special ? 0.02f : 0f;
+            if (pullValue < 0.01f + mod)
             {
                 return GachaCard.GachaRarity.FIVE_STAR;
             }
-            else if (pullValue < 0.1f)
+            else if (pullValue < 0.1f + mod)
             {
                 return GachaCard.GachaRarity.FOUR_STAR;
             }
             else if (pullValue < 0.5f)
             {
                 return GachaCard.GachaRarity.THREE_STAR;
-            } else
+            }
+            else
             {
                 return GachaCard.GachaRarity.FOOD_TICKET;
             }
         }
 
-        if(pullValue < -0.6)
+        if (special)
+        {
+            //too lazy to do proper math here I love hacky solutions (not normal distribution but lazy hard code)
+            float outerbonus = risky ? 0.71034216497f / 2 : 0.526897377267f / 2;
+            float outerMiddle = risky ? 0.0963659140157f : 0.086458286873f;
+            float innerMiddle = risky ? 0.138723458519f : 0.155301395814f;
+            float inner = risky ? 0.16644128749f : 0.208135236212f;
+
+            float counter = 0;
+
+            counter += outerbonus;
+            if (pullValue < counter)
+            {
+                return GachaCard.GachaRarity.LEGENDARY;
+            }
+
+            counter += outerbonus;
+            if (pullValue < counter)
+            {
+                return GachaCard.GachaRarity.COAL;
+            }
+
+            counter += outerMiddle;
+            if (pullValue < counter)
+            {
+                return GachaCard.GachaRarity.EPIC;
+            }
+
+            counter += outerMiddle;
+            if (pullValue < counter)
+            {
+                return GachaCard.GachaRarity.CURSE;
+            }
+
+            counter += innerMiddle;
+            if (pullValue < counter)
+            {
+                return GachaCard.GachaRarity.RARE;
+            }
+
+            counter += innerMiddle;
+            if (pullValue < counter)
+            {
+                return GachaCard.GachaRarity.TRASH;
+            }
+
+            counter += inner;
+            if (pullValue < counter)
+            {
+                return GachaCard.GachaRarity.UNCOMMON;
+            }
+            else
+            {
+                return GachaCard.GachaRarity.COMMON;
+            }
+        }
+
+        if (pullValue < -0.6)
         {
             return GachaCard.GachaRarity.COAL;
-        } 
+        }
         else if (pullValue < -0.4f)
         {
             return GachaCard.GachaRarity.CURSE;

@@ -7,7 +7,6 @@ public class GachaManager : MonoBehaviour
     public GameObject nextButton;
     public GameObject previousButton;
     int selected = 0;
-
     public void next()
     {
         if(selected >= Banners.Length - 1) return;
@@ -40,7 +39,7 @@ public class GachaManager : MonoBehaviour
             nextButton.SetActive(true);
         }
     }
-    public BannerType getBannerType()
+    public GachaBanner.BannerType getBannerType()
     {
         return Banners[selected].GetComponent<GachaBanner>().bannerType;
     }
