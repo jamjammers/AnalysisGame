@@ -28,11 +28,13 @@ public class GachaPopup : MonoBehaviour
             thing.color = temp;
         }
     }
-    public void pull()
+    public void pull(bool risky = false)
     {   
         if(thing.color.a > 2f) return;
         Debug.Log("Pulling from "+ gachaManager.getBannerType().name());
-        GachaCard gachaCard = Gacha.pull(gachaManager.getBannerType());
+        (GachaCard gachaCard, bool special) = Gacha.pull(gachaManager.getBannerType(), risky);
+
+
         if (gachaCard == null) return;
         thing.texture = gachaCard.texture;
 
@@ -41,7 +43,7 @@ public class GachaPopup : MonoBehaviour
         grad.SetKeys( 
             new GradientColorKey[] { 
                 new GradientColorKey(Color.white, 0.0f), 
-                new GradientColorKey(false? new Color(00,0xD6,0xFF): new Color(0xFF, 0xE1, 0), 1.0f) 
+                new GradientColorKey(special? new Color(0xFF, 0xE1, 0): new Color(00,0xD6,0xFF), 1.0f) 
                 }, 
             new GradientAlphaKey[] { 
                 new GradientAlphaKey(0.8f, 0.0f), 

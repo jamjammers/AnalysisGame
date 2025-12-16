@@ -10,7 +10,7 @@ public static class Inventory
     static float level = 1;
     static float exp = 0;
     static List<GachaCard> cards = new List<GachaCard>();
-    static bool loaded = false;
+    static bool secretGuarentee = true;
     
     public static bool characterPull()
     {
@@ -50,5 +50,15 @@ public static class Inventory
             exp -= level * 100;
             level++;
         }
+    }
+    public static void setSecretGuarentee(bool val)
+    {
+        secretGuarentee = val;
+    }
+    public static bool triggerGuarentee()
+    {
+        bool temp = secretGuarentee;
+        secretGuarentee = false;
+        return temp;
     }
 }

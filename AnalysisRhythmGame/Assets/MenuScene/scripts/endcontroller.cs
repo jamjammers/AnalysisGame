@@ -51,5 +51,7 @@ public class endcontroller : MonoBehaviour
         {
             Inventory.addTicket();   
         }
+
+        
     }
 }
