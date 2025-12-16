@@ -30,10 +30,7 @@ public class CollisionFlick : MonoBehaviour
         if (hit && enter)
         {
             float dif = Math.Abs(t2-t1);
-            if (!hit) { 
-                hitCategory.text = "Miss"; 
-                ScoreController.BreakCombo();
-            } else if (dif < 0.05) { 
+            if (dif < 0.05) { 
                 hitCategory.text = "Perfect"; 
                 ScoreController.ScorePerfect();
             } else if (dif < .2) { 
