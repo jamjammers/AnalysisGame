@@ -58,24 +58,4 @@ public class ScoreController : MonoBehaviour
         good = 0;
         great = 0;
     }
-    public IEnumerator end(float delay)
-    {
-        Debug.Log(delay);
-        yield return new WaitForSeconds(delay);
-
-
-        // Loads the second Scene
-        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
-
-        // Outputs the name of the current active Scene.
-        // Notice it still outputs the name of the first Scene
-        Debug.Log("Active Scene : " + SceneManager.GetActiveScene().name);
-
-        // Set Scene2 as the active Scene
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Menu"));
-
-        // Ouput the name of the active Scene
-        // See now that the name is updated
-        Debug.Log("Active Scene : " + SceneManager.GetActiveScene().name);
-    }
 }
