@@ -11,7 +11,12 @@ public class SwitchSceneButton : MonoBehaviour
 
     }
     void Awake()
-    { 
-        GetComponent<Button>().onClick.AddListener(()=>SceneManager.LoadScene(sceneName, LoadSceneMode.Single));
+    {
+        
+    }
+    public void stageSelect()
+    {
+        EndController.grantPull = false;
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);;
     }
 }

@@ -10,19 +10,19 @@ public class ScoreController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _comboText;
     public static int score = 0;
     private static int combo = 0;
+    public static int maxCombo {get; private set;} = 0;
+    public static int totalNotes {get; set;} = 0;
 
     public static int perfect = 0;
     public static int miss = 0;
     public static int good = 0;
     public static int great = 0;
-    public static bool gamed = false;
     public static bool done = false;
     private float time = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gamed = true;
     }
 
     // Update is called once per frame
@@ -43,8 +43,8 @@ public class ScoreController : MonoBehaviour
     }
 
     public static void AddScore() { score += 10 * combo + 10; }
-    public static void BreakCombo() { combo = 0; miss++;}
-    public static void AddCombo() { combo += 1; miss++;}
+    public static void BreakCombo() { maxCombo = Mathf.Max(combo, maxCombo); combo = 0; miss++;}
+    public static void AddCombo() { maxCombo = Mathf.Max(combo, maxCombo); combo += 1; miss++;}
     public static void ScorePerfect() { score += 300; AddCombo(); perfect++;}
     public static void ScoreGreat() { score += 100; AddCombo(); great++;}
     public static void ScoreGood() { score += 50; AddCombo(); good++;}

@@ -26,7 +26,7 @@ public class TimeController : MonoBehaviour
         // SONGLENGTH = _audioSource.clip.length;
 
         _audioSource.Play();
-        StartCoroutine(end(_audioSource.clip.length + 5f));
+        StartCoroutine(end(_audioSource.clip.length + 2f));
 
         Debug.Log(_audioSource.clip.length);
 
@@ -99,7 +99,7 @@ public class TimeController : MonoBehaviour
     {
         Debug.Log(delay);
         yield return new WaitForSeconds(delay);
-        ScoreController.gamed = true;
+        EndController.gameJustCompleted = true;
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Menu");
 
         // Wait until the asynchronous scene fully loads

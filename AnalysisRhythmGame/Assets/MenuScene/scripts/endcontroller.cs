@@ -1,8 +1,9 @@
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using UnityEngine.SocialPlatforms.Impl;
 
-public class endcontroller : MonoBehaviour
+public class EndController : MonoBehaviour
 {
     public GameObject perfText;
     public GameObject greatText;
@@ -14,12 +15,17 @@ public class endcontroller : MonoBehaviour
 
 
     public GameObject target;
+
+    public static bool gameJustCompleted = false;
+    public static bool grantPull = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (ScoreController.gamed)
+        if (gameJustCompleted)
         {
+            gameJustCompleted = false;
             loadValues(ScoreController.score, ScoreController.perfect, ScoreController.great, ScoreController.good, ScoreController.miss);
+            distributeRewards(ScoreController.score, ScoreController.perfect, ScoreController.great, ScoreController.good, ScoreController.miss);
         }
         else
         {
@@ -43,15 +49,32 @@ public class endcontroller : MonoBehaviour
         goodText.GetComponent<TextMeshProUGUI>().text = "Good: " + good;
         missText.GetComponent<TextMeshProUGUI>().text = "Miss: " + miss;
 
-        float gain = Mathf.Max(Utilities.Normal(score, 10000), 0);
-        expText.GetComponent<TextMeshProUGUI>().text = "Exp Gained: \n" + gain.ToString();
-        Inventory.gainExp(gain);
+        
+    }
+    void distributeRewards(int score, int perfect, int great, int good, int miss)
+    {
+        float expGain = Mathf.Max(Utilities.Normal(score, 10000), 0);
+        expText.GetComponent<TextMeshProUGUI>().text = "Exp Gained: \n" + expGain.ToString();
+        Inventory.gainExp(expGain);
+
+        // if full combo -> eligible for guarentee
+        if(ScoreController.maxCombo == ScoreController.totalNotes && Random.Range(0f, 1f)<=0.25f)
+        {
+            Inventory.setSecretGuarentee(true);
+        }
+
+        if (grantPull)
+        {
+            grantPull = false;
+            Inventory.addPulls(1);
+            pullText.GetComponent<TextMeshProUGUI>().text = "Pull Gained!";
+        }
+
 
         if(Buffs.team[0].name == "Fat Cat")
         {
             Inventory.addTicket();   
         }
 
-        
     }
 }

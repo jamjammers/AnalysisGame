@@ -6,7 +6,7 @@ public static class Inventory
     static int pulls = 1;
     static int tickets = 1;
 
-    static int coins = 0;
+    // static int coins = 0;
     static float level = 1;
     static float exp = 0;
     static List<GachaCard> cards = new List<GachaCard>();
