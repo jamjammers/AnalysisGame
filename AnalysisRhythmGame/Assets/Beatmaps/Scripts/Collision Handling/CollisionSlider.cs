@@ -15,10 +15,11 @@ public class CollisionSlider : MonoBehaviour
     private float t1=0f;
     private float t2=0f;
 
+    private float speed = NoteSpawner.spd;
     public void Update()
     {
-        if (transform.position.z - transform.localScale.z/2 < 20 && Input.GetKeyDown(KeyMapping.keyMap[key])) hit = true;
-        if (transform.position.z + transform.localScale.z/2 < -10) Destroy(gameObject);
+        if (transform.position.z - transform.localScale.z/2 < speed/2 && Input.GetKeyDown(KeyMapping.keyMap[key])) hit = true;
+        if (transform.position.z + transform.localScale.z/2 < -speed/4) Destroy(gameObject);
         if (Input.GetKeyUp(KeyMapping.keyMap[key])) keyReleased = true;
         if (hit) t1 += Time.deltaTime;
 
@@ -30,7 +31,7 @@ public class CollisionSlider : MonoBehaviour
             Debug.Log("Dif: " + dif1 + ", dif2: " + dif2 + ", t1: " + t1 + ", t2: " + t2);
             if (!hit || dif1 > 1.5) { 
                 hitCategory.text = "Miss"; 
-                ScoreController.BreakCombo();
+                ScoreController.ScoreMiss();
             } else if (dif1 < 0.5 && dif2 < 0.15) { 
                 hitCategory.text = "Perfect"; 
                 ScoreController.ScorePerfect();

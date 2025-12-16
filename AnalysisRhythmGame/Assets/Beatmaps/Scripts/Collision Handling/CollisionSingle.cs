@@ -10,43 +10,59 @@ public class CollisionSingle : MonoBehaviour
     [SerializeField] private AudioSource hitEffect;
     private bool hit = false;
     private bool enter = false;
-    private float t1=0f;
-    private float t2=0f;
+
+    private float timeKeyPressed = 0f; //time
+    private float timeAfterEnter = 0f; //time since it was enabled to be hit
+
+    private float speed = NoteSpawner.spd;
 
     public void Update()
     {
-        if (transform.position.z < 20 && Input.GetKeyDown(KeyMapping.keyMap[key])) { hit = true; hitEffect.Play(); }
-        if (hit) {t1 += Time.deltaTime;}
-        if (enter) {t2 += Time.deltaTime;}
-        if (transform.position.z < -10 && !hit) {
+        if (transform.position.z < speed / 2 && Input.GetKeyDown(KeyMapping.keyMap[key]))
+        {
+            hit = true; hitEffect.Play();
+        }
+        if (hit) { timeKeyPressed += Time.deltaTime; }
+        if (enter) { timeAfterEnter += Time.deltaTime; }
+
+        if (transform.position.z < -speed / 4 && !hit)
+        {
             Destroy(gameObject);
             hitCategory.text = "Miss";
-            ScoreController.BreakCombo();
+            ScoreController.ScoreMiss();
         }
 
         if (hit && enter)
         {
-            float dif = Math.Abs(t2-t1);
-            if (dif < 0.05) { 
-                hitCategory.text = "Perfect"; 
+            float dif = Math.Abs(timeAfterEnter - timeKeyPressed);
+            if (dif < 0.05)
+            {
+                hitCategory.text = "Perfect";
                 ScoreController.ScorePerfect();
-            } else if (dif < .2) { 
-                hitCategory.text = "Great"; 
+            }
+            else if (dif < .2)
+            {
+                hitCategory.text = "Great";
                 ScoreController.ScoreGreat();
-            } else { 
+            }
+            else
+            {
                 hitCategory.text = "Good";
                 ScoreController.ScoreGood();
-                ScoreController.BreakCombo();
             }
 
             Destroy(gameObject);
         }
-
-        if (t2 > .5) {
-            hitCategory.text = "Miss";
-            ScoreController.BreakCombo();
-        }
+        /*
+                if (timeAfterEnter > .5) { 
+                    hitCategory.text = "Miss";
+                    ScoreController.ScoreMiss();
+                }
+        */
     }
 
-    public void OnTriggerEnter(Collider other) { if (other.gameObject.tag == "Input") {enter = true;} }
+    public void OnTriggerEnter(Collider other)
+    {
+        enter = other.gameObject.tag == "Input" ? true : enter;
+    }
 }

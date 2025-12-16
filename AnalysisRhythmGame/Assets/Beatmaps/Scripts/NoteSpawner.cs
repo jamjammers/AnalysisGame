@@ -7,7 +7,7 @@ public class NoteSpawner : MonoBehaviour
 {
     public static List<GameObject> prefabs = new List<GameObject>();
     public static List<Note> notes;
-    public static float spd = 0.00000001f;
+    public static float spd = 40f; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,14 +18,14 @@ public class NoteSpawner : MonoBehaviour
         SpawnNotes(spd);
     }
     
-    public void SpawnNotes(float speed)
+    public void SpawnNotes()
     {
         foreach (Note note in notes) {  
-            note.SetSpeed(speed);
             note.UpdateTransform();
-            GameObject curr = Instantiate(note.prefab, note.startPos, note.prefab.transform.rotation); 
+            GameObject curr = Instantiate(note.original, note.startPos, note.original.transform.rotation); 
             curr.transform.localScale = note.scale;
             prefabs.Add(curr);
+            note.prefab = curr;
         }
     }
 }

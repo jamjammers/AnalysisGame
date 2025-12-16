@@ -20,7 +20,7 @@ public class TimeController : MonoBehaviour
 
     public static float CTIME = 0f;
 
-    static bool debug = true;
+    static bool debug = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -70,10 +70,13 @@ public class TimeController : MonoBehaviour
         //         break;
         //     case "play":
         //             // moving each note manually as a function of time
+
+
         foreach(Note note in NoteSpawner.notes)
         {
             note.update(CTIME);
         }
+        
         //         break;
         // }
 

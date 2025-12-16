@@ -14,7 +14,8 @@ public class CollisionFlick : MonoBehaviour
     private bool enter = false;
     private float t1=0f;
     private float t2=0f;
-
+    
+    private float speed = NoteSpawner.spd;
     public void Update()
     {
         if (transform.position.z < 20 && Input.GetKeyDown(KeyMapping.keyMap[key1])) k1 = true;
@@ -24,7 +25,7 @@ public class CollisionFlick : MonoBehaviour
         if (transform.position.z < -10 && !hit) {
             Destroy(gameObject);
             hitCategory.text = "Miss";
-            ScoreController.BreakCombo();
+            ScoreController.ScoreMiss();
         }
         
         if (hit && enter)
@@ -39,7 +40,6 @@ public class CollisionFlick : MonoBehaviour
             } else { 
                 hitCategory.text = "Good";
                 ScoreController.ScoreGood();
-                ScoreController.BreakCombo();
             }
 
             Destroy(gameObject);
