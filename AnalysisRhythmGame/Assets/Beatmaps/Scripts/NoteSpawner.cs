@@ -15,7 +15,7 @@ public class NoteSpawner : MonoBehaviour
         notes = Beatmaps.NOTES;
         ScoreController.totalNotes = notes.Count;
         // instantiating game objects in {notes} and adding to List prefabs
-        SpawnNotes(spd);
+        SpawnNotes();
     }
     
     public void SpawnNotes()
