@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
 
 public class Note
 {
@@ -25,7 +26,7 @@ public class Note
     {
         this.prefab = prefab;
         this.impactTime = impactTime;
-        this.releaseTime = impactTime;
+        releaseTime = impactTime;
         slider = false;
     }
 
@@ -35,11 +36,11 @@ public class Note
         {
             scale = new Vector3(2f,0.5f, speed * (releaseTime - impactTime)+3);
             startPos = new Vector3(prefab.transform.position.x, prefab.transform.position.y, speed*impactTime+scale.z/2);
-        } else
-        {
-            scale = new Vector3(prefab.transform.localScale.x, prefab.transform.localScale.y, prefab.transform.localScale.z);
-            startPos = new Vector3(prefab.transform.position.x, prefab.transform.position.y, speed*impactTime+scale.z/2);
+            return;
         }
+        scale = new Vector3(prefab.transform.localScale.x, prefab.transform.localScale.y, prefab.transform.localScale.z);
+        startPos = new Vector3(prefab.transform.position.x, prefab.transform.position.y, speed*impactTime+scale.z/2);
+        
     }
 
     public void SetSpeed(float spd)
@@ -49,8 +50,11 @@ public class Note
 
     public void update(float CTIME)
     {
-        prefab.transform.position
-                        = new Vector3(prefab.transform.position.x, prefab.transform.position.y, 40 * (impactTime - CTIME) + scale.z / 2);
+        if(prefab == null) return;
+
+        prefab.transform.position = new Vector3(prefab.transform.position.x, 
+                                                prefab.transform.position.y, 
+                                                speed * (impactTime - CTIME) + scale.z / 2);
            
     }
 }

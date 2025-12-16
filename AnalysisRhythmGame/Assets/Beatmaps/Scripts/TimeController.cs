@@ -70,13 +70,9 @@ public class TimeController : MonoBehaviour
         //         break;
         //     case "play":
         //             // moving each note manually as a function of time
-        for (int i = 0; i < NoteSpawner.notes.Count; i++)
+        foreach(Note note in NoteSpawner.notes)
         {
-            if (NoteSpawner.prefabs[i] != null)
-            {
-                NoteSpawner.prefabs[i].transform.position
-                        = new Vector3(NoteSpawner.notes[i].prefab.transform.position.x, NoteSpawner.notes[i].prefab.transform.position.y, 40 * (NoteSpawner.notes[i].impactTime - CTIME) + NoteSpawner.notes[i].scale.z / 2);
-            }
+            note.update(CTIME);
         }
         //         break;
         // }
