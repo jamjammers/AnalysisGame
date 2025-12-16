@@ -8,6 +8,7 @@ public class CollisionSlider : MonoBehaviour
     [SerializeField] private string key;
     [SerializeField] private TextMeshProUGUI hitCategory;
     [SerializeField] private AudioSource hitEffect;
+    [SerializeField] private int bpm;
     private bool hit = false;
     private bool exit = false;
     private bool keyReleased = false;
@@ -16,15 +17,12 @@ public class CollisionSlider : MonoBehaviour
 
     public void Update()
     {
-        if (transform.position.z - transform.localScale.z/2 < 20 && Input.GetKeyDown(KeyMapping.keyMap[key])) { hit = true; }
-        if (hit) {
-            t1 += Time.deltaTime; 
-            if ((int) (t1*100)%15 == 0)
-            {
-                hitEffect.Play();
-            }
-        }
-        if (Input.GetKeyUp(KeyMapping.keyMap[key])) {keyReleased = true; hitEffect.Play(); }
+        if (transform.position.z - transform.localScale.z/2 < 20 && Input.GetKeyDown(KeyMapping.keyMap[key])) hit = true;
+        if (transform.position.z + transform.localScale.z/2 < -10) Destroy(gameObject);
+        if (Input.GetKeyUp(KeyMapping.keyMap[key])) keyReleased = true;
+        if (hit) t1 += Time.deltaTime;
+
+
         if (exit && keyReleased)
         {
             float dif1 = Math.Abs(transform.localScale.z/40-t1);
@@ -43,10 +41,22 @@ public class CollisionSlider : MonoBehaviour
                 hitCategory.text = "Good";
                 ScoreController.ScoreGood();
             }
-            // Destroy(gameObject);
+
+            Destroy(gameObject);
         }
     }
-    public void OnTriggerStay(Collider other) { if (other.gameObject.tag == "Input") {t2 += Time.deltaTime;} }
+    public void OnTriggerStay(Collider other) { 
+        if (other.gameObject.tag == "Input") {
+            t2 += Time.deltaTime;
+            if (hit && !keyReleased) {
+                if ((int) (t1*100)% (6000/bpm/2) < 5)
+                {
+                    hitEffect.Play();
+                    ScoreController.ScorePerfect();
+                }
+            }
+        }
+    }
 
-    public void OnTriggerExit(Collider other) { if (other.gameObject.tag == "Input") {exit = true;} }
+    public void OnTriggerExit(Collider other) { if (other.gameObject.tag == "Input") exit = true;}
 }

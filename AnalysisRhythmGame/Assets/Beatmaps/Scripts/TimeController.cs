@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
-public class TimeControllerNH : MonoBehaviour
+public class TimeController : MonoBehaviour
 {
     [SerializeField] private Slider _slider;
     [SerializeField] private TextMeshProUGUI _currentTime;
@@ -23,73 +23,69 @@ public class TimeControllerNH : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SONGLENGTH = _audioSource.clip.length;
+        // SONGLENGTH = _audioSource.clip.length;
 
-        // _audioSource.Play();
-        // StartCoroutine(end(_audioSource.clip.length + 5f));
+        _audioSource.Play();
+        StartCoroutine(end(_audioSource.clip.length + 5f));
 
         Debug.Log(_audioSource.clip.length);
 
-        _slider.onValueChanged.AddListener((v) =>
-        {
-            CTIME = v * SONGLENGTH;
-            _audioSource.Stop();
-            if ((int)CTIME%60 < 10) {_currentTime.text = ((int)(CTIME / 60)).ToString() + ":0" + ((int)(100*CTIME%6000)).ToString();}
-            else{_currentTime.text = ((int)(CTIME/ 60)).ToString() + ":" + ((int)(CTIME*100%6000)).ToString();}
-            state = "pause";
+        // _slider.onValueChanged.AddListener((v) =>
+        // {
+        //     CTIME = v * SONGLENGTH;
+        //     _audioSource.Stop();
+        //     if ((int)CTIME%60 < 10) {_currentTime.text = ((int)(CTIME / 60)).ToString() + ":0" + ((int)(100*CTIME%6000)).ToString();}
+        //     else{_currentTime.text = ((int)(CTIME/ 60)).ToString() + ":" + ((int)(CTIME*100%6000)).ToString();}
+        //     state = "pause";
 
-            for (int i = 0; i < NoteSpawner.notes.Count; i++) { 
-                NoteSpawner.prefabs[i].transform.position 
-                        = new Vector3(NoteSpawner.notes[i].prefab.transform.position.x, NoteSpawner.notes[i].prefab.transform.position.y, 40 * (NoteSpawner.notes[i].impactTime-CTIME)+NoteSpawner.notes[i].scale.z/2);
-            }
-        });
-        _totalTime.text = "/ " + ((int)(SONGLENGTH/60)).ToString() + ":" + ((int)SONGLENGTH%60).ToString();
+        //     for (int i = 0; i < NoteSpawner.notes.Count; i++) { 
+        //         NoteSpawner.prefabs[i].transform.position 
+        //                 = new Vector3(NoteSpawner.notes[i].prefab.transform.position.x, NoteSpawner.notes[i].prefab.transform.position.y, 40 * (NoteSpawner.notes[i].impactTime-CTIME)+NoteSpawner.notes[i].scale.z/2);
+        //     }
+        // });
+        // _totalTime.text = "/ " + ((int)(SONGLENGTH/60)).ToString() + ":" + ((int)SONGLENGTH%60).ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && !oldK) {
-            switch (state) {
-                case "pause":
-                    state = "play";
-                    PlayAudio(CTIME);
-                    break;
-                case "play":
-                    for (int i = 0; i < NoteSpawner.notes.Count; i++) { 
-                        NoteSpawner.prefabs[i].transform.position 
-                                = new Vector3(NoteSpawner.notes[i].prefab.transform.position.x, NoteSpawner.notes[i].prefab.transform.position.y, 40 * (NoteSpawner.notes[i].impactTime-CTIME)+NoteSpawner.notes[i].scale.z/2);
-                    }
-                    state = "pause";
-                    break;
-            }
-        }
+        // if(Input.GetKeyDown(KeyCode.Space) && !oldK) {
+        //     switch (state) {
+        //         case "pause":
+        //             state = "play";
+        //             PlayAudio(CTIME);
+        //             break;
+        //         case "play":
+        //             state = "pause";
+        //             break;
+        //     }
+        // }
 
-        oldK = Input.GetKeyDown(KeyCode.Space);
+        // oldK = Input.GetKeyDown(KeyCode.Space);
         
-        switch (state) {
-            case "pause":
-                _audioSource.Stop();
-                break;
-            case "play":
-                    // moving each note manually as a function of time
+        // switch (state) {
+        //     case "pause":
+        //         _audioSource.Stop();
+        //         break;
+        //     case "play":
+        //             // moving each note manually as a function of time
                     for (int i = 0; i < NoteSpawner.notes.Count; i++) { 
                         if (NoteSpawner.prefabs[i] != null) {
                             NoteSpawner.prefabs[i].transform.position 
                                     = new Vector3(NoteSpawner.notes[i].prefab.transform.position.x, NoteSpawner.notes[i].prefab.transform.position.y, 40 * (NoteSpawner.notes[i].impactTime-CTIME)+NoteSpawner.notes[i].scale.z/2);
                         }
                     }
-                break;
-        }
+        //         break;
+        // }
 
-        t += Time.deltaTime;
-        if ((int)t%60 < 10) {_globalTime.text = ((int)(t/60)).ToString() + ":0" + ((int)t%60).ToString();}
-        else{_globalTime.text = ((int)(t/ 60)).ToString() + ":" + ((int)t%60).ToString();}
+        // t += Time.deltaTime;
+        // if ((int)t%60 < 10) {_globalTime.text = ((int)(t/60)).ToString() + ":0" + ((int)t%60).ToString();}
+        // else{_globalTime.text = ((int)(t/ 60)).ToString() + ":" + ((int)t%60).ToString();}
 
         if(_audioSource.isPlaying) {
             CTIME = _audioSource.time;
-            if ((int)CTIME%60 < 10) {_currentTime.text = ((int)(CTIME / 60)).ToString() + ":0" + ((int)(CTIME*100%6000)).ToString();}
-            else{_currentTime.text = ((int)(CTIME/ 60)).ToString() + ":" + ((int)(CTIME*100%6000)).ToString();}            
+        //     if ((int)CTIME%60 < 10) {_currentTime.text = ((int)(CTIME / 60)).ToString() + ":0" + ((int)(CTIME*100%6000)).ToString();}
+        //     else{_currentTime.text = ((int)(CTIME/ 60)).ToString() + ":" + ((int)(CTIME*100%6000)).ToString();}            
         }
 
     }

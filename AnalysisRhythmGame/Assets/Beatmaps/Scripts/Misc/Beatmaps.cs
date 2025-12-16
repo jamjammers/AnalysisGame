@@ -1248,23 +1248,23 @@ public class Beatmaps : MonoBehaviour
             case "Scorpio Beatmap": 
                 NOTES = new List<Note>
                 {
-                    new(originals[(int) Indexes.K], .18f+0*.75f), 
-                    new(originals[(int) Indexes.K], .18f+3*.75f), 
-                    new(originals[(int) Indexes.J], .18f+4*.75f), 
+                    new(originals[(int) Indexes.K], 0*.75f), 
+                    new(originals[(int) Indexes.K], 3*.75f), 
+                    new(originals[(int) Indexes.J], 4*.75f), 
 
-                    new(originals[(int) Indexes.F], .18f+8*.75f), 
-                    new(originals[(int) Indexes.F], .18f+10*.75f), 
-                    new(originals[(int) Indexes.J], .18f+11*.75f), 
-                    new(originals[(int) Indexes.J], .18f+12*.75f), 
+                    new(originals[(int) Indexes.F], 8*.75f), 
+                    new(originals[(int) Indexes.F], 10*.75f), 
+                    new(originals[(int) Indexes.J], 11*.75f), 
+                    new(originals[(int) Indexes.J], 12*.75f), 
 
-                    new(originals[(int) Indexes.K], .18f+16*.75f), 
-                    new(originals[(int) Indexes.J], .18f+17*.75f), 
-                    new(originals[(int) Indexes.J], .18f+20*.75f),
-                    new(originals[(int) Indexes.J], .18f+24*.75f),
-                    new(originals[(int) Indexes.F], .18f+26*.75f),
-                    new(originals[(int) Indexes.D], .18f+27*.75f),
-                    new(originals[(int) Indexes.D], .18f+28*.75f),
-                    new(originals[(int) Indexes.F], .18f+30*.75f),
+                    new(originals[(int) Indexes.K], 16*.75f), 
+                    new(originals[(int) Indexes.J], 17*.75f), 
+                    new(originals[(int) Indexes.J], 20*.75f),
+                    new(originals[(int) Indexes.J], 24*.75f),
+                    new(originals[(int) Indexes.F], 26*.75f),
+                    new(originals[(int) Indexes.D], 27*.75f),
+                    new(originals[(int) Indexes.D], 28*.75f),
+                    new(originals[(int) Indexes.F], 30*.75f),
 
                     new(originals[(int) Indexes.S], .18f+64*.375f, .18f+68*.375f),
 

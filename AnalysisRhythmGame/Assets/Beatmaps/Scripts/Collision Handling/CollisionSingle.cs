@@ -15,9 +15,14 @@ public class CollisionSingle : MonoBehaviour
 
     public void Update()
     {
-        if (transform.position.z < 20 && Input.GetKeyDown(KeyMapping.keyMap[key])) { hit = true; hitEffect.Play(); }
-        if (hit) {t1 += Time.deltaTime;}
-        if (enter) {t2 += Time.deltaTime;}
+        if (transform.position.z < 20 && Input.GetKeyDown(KeyMapping.keyMap[key])) {hit = true; hitEffect.Play();}
+        if (hit) t1 += Time.deltaTime;
+        if (enter) t2 += Time.deltaTime;
+        if (transform.position.z < -10 && !hit) {
+            Destroy(gameObject);
+            hitCategory.text = "Miss";
+            ScoreController.BreakCombo();
+        }
 
         if (hit && enter)
         {
@@ -25,25 +30,26 @@ public class CollisionSingle : MonoBehaviour
             if (!hit) { 
                 hitCategory.text = "Miss"; 
                 ScoreController.BreakCombo();
-            } else if (dif < 0.15) { 
+            } else if (dif < 0.05) { 
                 hitCategory.text = "Perfect"; 
                 ScoreController.ScorePerfect();
-            } else if (dif < .25) { 
+            } else if (dif < .2) { 
                 hitCategory.text = "Great"; 
                 ScoreController.ScoreGreat();
             } else { 
                 hitCategory.text = "Good";
                 ScoreController.ScoreGood();
+                ScoreController.BreakCombo();
             }
-            // Destroy(gameObject);
+
+            Destroy(gameObject);
         }
-        if (t2 > .6f)
-        {
+
+        if (t2 > .5) {
             hitCategory.text = "Miss";
             ScoreController.BreakCombo();
-            // Destroy(gameObject);
         }
     }
 
-    public void OnTriggerEnter(Collider other) { if (other.gameObject.tag == "Input") {enter = true;} }
+    public void OnTriggerEnter(Collider other) { if (other.gameObject.tag == "Input") enter = true;}
 }
