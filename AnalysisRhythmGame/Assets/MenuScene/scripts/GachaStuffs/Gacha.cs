@@ -31,11 +31,10 @@ public class Gacha : MonoBehaviour
         { GachaCard.GachaRarity.LEGENDARY, new List<GachaCard>() }
     };
 
-    static CollectionScreen collectionScreen;
     static bool debugMode = true;
     public void Start()
     {
-        collectionScreen = FindObjectsByType<CollectionScreen>(FindObjectsInactive.Include, FindObjectsSortMode.None)[0];
+        Inventory.collectionScreen = FindObjectsByType<CollectionScreen>(FindObjectsInactive.Include, FindObjectsSortMode.None)[0];
         loadTextures();
         loadCards();
 
@@ -43,6 +42,9 @@ public class Gacha : MonoBehaviour
         {
             Inventory.addPulls(10000);
             Inventory.addTickets(10000);
+            Inventory.addCards(rarityDict[GachaCard.GachaRarity.FIVE_STAR]);
+            Inventory.addCards(rarityDict[GachaCard.GachaRarity.FOUR_STAR]);
+            Inventory.addCards(rarityDict[GachaCard.GachaRarity.THREE_STAR]);
         }
     }
 
@@ -196,7 +198,6 @@ public class Gacha : MonoBehaviour
         GachaCard pulledCard = rarityDict[rarity][randValue];
 
         Inventory.addCard(pulledCard);
-        collectionScreen.addCard(pulledCard);
 
         return (pulledCard, critical);
     }

@@ -13,20 +13,21 @@ public class TimeController : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
 
     [SerializeField] private GameObject scoreController;
-    private static float  SONGLENGTH;
+    private static float SONGLENGTH;
     private float t;
     private bool oldK;
     private string state = "pause";
 
     public static float CTIME = 0f;
 
+    static bool debug = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // SONGLENGTH = _audioSource.clip.length;
 
         _audioSource.Play();
-        StartCoroutine(end(_audioSource.clip.length + 2f));
+        StartCoroutine(end((debug ? 0 : _audioSource.clip.length) + 2f));
 
         Debug.Log(_audioSource.clip.length);
 
@@ -62,19 +63,21 @@ public class TimeController : MonoBehaviour
         // }
 
         // oldK = Input.GetKeyDown(KeyCode.Space);
-        
+
         // switch (state) {
         //     case "pause":
         //         _audioSource.Stop();
         //         break;
         //     case "play":
         //             // moving each note manually as a function of time
-                    for (int i = 0; i < NoteSpawner.notes.Count; i++) { 
-                        if (NoteSpawner.prefabs[i] != null) {
-                            NoteSpawner.prefabs[i].transform.position 
-                                    = new Vector3(NoteSpawner.notes[i].prefab.transform.position.x, NoteSpawner.notes[i].prefab.transform.position.y, 40 * (NoteSpawner.notes[i].impactTime-CTIME)+NoteSpawner.notes[i].scale.z/2);
-                        }
-                    }
+        for (int i = 0; i < NoteSpawner.notes.Count; i++)
+        {
+            if (NoteSpawner.prefabs[i] != null)
+            {
+                NoteSpawner.prefabs[i].transform.position
+                        = new Vector3(NoteSpawner.notes[i].prefab.transform.position.x, NoteSpawner.notes[i].prefab.transform.position.y, 40 * (NoteSpawner.notes[i].impactTime - CTIME) + NoteSpawner.notes[i].scale.z / 2);
+            }
+        }
         //         break;
         // }
 
@@ -82,15 +85,16 @@ public class TimeController : MonoBehaviour
         // if ((int)t%60 < 10) {_globalTime.text = ((int)(t/60)).ToString() + ":0" + ((int)t%60).ToString();}
         // else{_globalTime.text = ((int)(t/ 60)).ToString() + ":" + ((int)t%60).ToString();}
 
-        if(_audioSource.isPlaying) {
+        if (_audioSource.isPlaying)
+        {
             CTIME = _audioSource.time;
-        //     if ((int)CTIME%60 < 10) {_currentTime.text = ((int)(CTIME / 60)).ToString() + ":0" + ((int)(CTIME*100%6000)).ToString();}
-        //     else{_currentTime.text = ((int)(CTIME/ 60)).ToString() + ":" + ((int)(CTIME*100%6000)).ToString();}            
+            //     if ((int)CTIME%60 < 10) {_currentTime.text = ((int)(CTIME / 60)).ToString() + ":0" + ((int)(CTIME*100%6000)).ToString();}
+            //     else{_currentTime.text = ((int)(CTIME/ 60)).ToString() + ":" + ((int)(CTIME*100%6000)).ToString();}            
         }
 
     }
     void PlayAudio(float time)
-    {        
+    {
         _audioSource.time = time;
         _audioSource.Play();
     }

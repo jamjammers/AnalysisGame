@@ -11,7 +11,8 @@ public static class Inventory
     static float exp = 0;
     static List<GachaCard> cards = new List<GachaCard>();
     static bool secretGuarentee = true;
-    
+    public static CollectionScreen collectionScreen;
+
     public static bool characterPull()
     {
         if (pulls <= 0) return false;
@@ -24,10 +25,20 @@ public static class Inventory
         tickets--;
         return true;
     }
-    public static void addCard(GachaCard gachaCard) { 
-        if(cards.Contains(gachaCard)) return;
-        cards.Add(gachaCard); 
+    public static void addCard(GachaCard gachaCard)
+    {
+        if (cards.Contains(gachaCard)) return;
+        cards.Add(gachaCard);
+        collectionScreen.addCard(gachaCard);
+
+    }
+    public static void addCards(List<GachaCard> gachaCards)
+    {
+        foreach (GachaCard gachaCard in gachaCards)
+        {
+            addCard(gachaCard);
         }
+    }
     public static List<GachaCard> getCards() { return cards; }
 
     public static void addPulls(int amount)

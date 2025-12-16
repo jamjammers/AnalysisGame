@@ -21,6 +21,38 @@ public class EndController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        foreach(Transform child in transform)
+        {
+           if(child.name == "Score")
+            {
+                scoreText = child.gameObject;
+            } 
+            else if(child.name == "Perfect")
+            {
+                perfText = child.gameObject;
+            }
+            else if(child.name == "Great")
+            {
+                greatText = child.gameObject;
+            }
+            else if(child.name == "Good")
+            {
+                goodText = child.gameObject;
+            }
+            else if(child.name == "Miss")
+            {
+                missText = child.gameObject;
+            }
+            else if(child.name == "Exp")
+            {
+                expText = child.gameObject;
+            }
+            else if(child.name == "Pull")
+            {
+                pullText = child.gameObject;
+            }
+        }
+        
         if (gameJustCompleted)
         {
             gameJustCompleted = false;
@@ -71,7 +103,7 @@ public class EndController : MonoBehaviour
         }
 
 
-        if(Buffs.team[0].name == "Fat Cat")
+        if(Buffs.team[0] != null && Buffs.team[0].name == "Fat Cat")
         {
             Inventory.addTicket();   
         }
