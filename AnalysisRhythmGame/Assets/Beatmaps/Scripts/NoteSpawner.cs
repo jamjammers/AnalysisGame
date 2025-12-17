@@ -7,7 +7,7 @@ public class NoteSpawner : MonoBehaviour
 {
     public static List<GameObject> prefabs = new List<GameObject>();
     public static List<Note> notes;
-    public static float spd = 0.00000001f;
+    public static float spd = 40f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

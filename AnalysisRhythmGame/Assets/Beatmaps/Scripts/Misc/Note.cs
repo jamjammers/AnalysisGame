@@ -35,11 +35,11 @@ public class Note
         if (slider)
         {
             scale = new Vector3(2f,0.5f, speed * (releaseTime - impactTime)+3);
-            startPos = new Vector3(prefab.transform.position.x, prefab.transform.position.y, speed*impactTime+scale.z/2);
+            startPos = new Vector3(prefab.transform.position.x, prefab.transform.position.y, speed*(TimeController.waitTime+impactTime)+scale.z/2);
             return;
         }
         scale = new Vector3(prefab.transform.localScale.x, prefab.transform.localScale.y, prefab.transform.localScale.z);
-        startPos = new Vector3(prefab.transform.position.x, prefab.transform.position.y, speed*impactTime+scale.z/2);
+        startPos = new Vector3(prefab.transform.position.x, prefab.transform.position.y, speed*(TimeController.waitTime+impactTime)+scale.z/2);
         
     }
 

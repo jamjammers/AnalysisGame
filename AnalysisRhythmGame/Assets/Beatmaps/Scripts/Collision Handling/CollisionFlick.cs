@@ -14,37 +14,38 @@ public class CollisionFlick : MonoBehaviour
     private bool enter = false;
     private float t1=0f;
     private float t2=0f;
+    private float speed = NoteSpawner.spd;
 
     public void Update()
     {
-        if (transform.position.z < 20 && Input.GetKeyDown(KeyMapping.keyMap[key1])) k1 = true;
+        if (transform.position.z < speed/2 && Input.GetKeyDown(KeyMapping.keyMap[key1])) k1 = true;
         if (k1 && Input.GetKeyDown(KeyMapping.keyMap[key2])) {hit = true; hitEffect.Play();}
         if (hit) t1 += Time.deltaTime;
         if (enter) t2 += Time.deltaTime;
-        if (transform.position.z < -10 && !hit) {
+        if (transform.position.z < speed/(-4) && !hit) {
             Destroy(gameObject);
-            hitCategory.text = "Miss";
-            ScoreController.BreakCombo();
+            // hitCategory.text = "Miss";
+            // ScoreController.BreakCombo();
         }
         
-        if (hit && enter)
-        {
-            float dif = Math.Abs(t2-t1);
-            if (dif < 0.05) { 
-                hitCategory.text = "Perfect"; 
-                ScoreController.ScorePerfect();
-            } else if (dif < .2) { 
-                hitCategory.text = "Great"; 
-                ScoreController.ScoreGreat();
-            } else { 
-                hitCategory.text = "Good";
-                ScoreController.ScoreGood();
-                ScoreController.BreakCombo();
-            }
+        // if (hit && enter)
+        // {
+        //     float dif = Math.Abs(t2-t1);
+        //     if (dif < 0.05) { 
+        //         hitCategory.text = "Perfect"; 
+        //         ScoreController.ScorePerfect();
+        //     } else if (dif < .2) { 
+        //         hitCategory.text = "Great"; 
+        //         ScoreController.ScoreGreat();
+        //     } else { 
+        //         hitCategory.text = "Good";
+        //         ScoreController.ScoreGood();
+        //     }
 
-            Destroy(gameObject);
-        }
+        //     Destroy(gameObject);
+        // }
     }
 
-    public void OnTriggerEnter(Collider other) { if (other.gameObject.tag == "Input") enter = true;}
+    public void OnTriggerEnter(Collider other) { if (other.gameObject.tag == "Input") enter = true;hitCategory.text = "Perfect"; ScoreController.ScorePerfect(); hitEffect.Play();}
+    public void OnTriggerExit(Collider other) { if (other.gameObject.tag == "Input") {} }
 }

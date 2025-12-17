@@ -42,12 +42,12 @@ public class ScoreController : MonoBehaviour
         time += Time.deltaTime;
     }
 
-    public static void AddScore() { score += 10 * combo + 10; }
+    public static void AddScore() { score += 5 * combo + 5; }
     public static void BreakCombo() { maxCombo = Mathf.Max(combo, maxCombo); combo = 0; miss++;}
-    public static void AddCombo() { maxCombo = Mathf.Max(combo, maxCombo); combo += 1; miss++;}
-    public static void ScorePerfect() { score += 300; AddCombo(); perfect++;}
-    public static void ScoreGreat() { score += 100; AddCombo(); great++;}
-    public static void ScoreGood() { score += 50; AddCombo(); good++;}
+    public static void AddCombo() { maxCombo = Mathf.Max(combo, maxCombo); combo += 1;}
+    public static void ScorePerfect() { score += 30; AddCombo(); perfect++;}
+    public static void ScoreGreat() { score += 10; AddCombo(); great++;}
+    public static void ScoreGood() { score += 5; AddCombo(); good++; combo = 0;}
 
     public static void ResetScore()
     {
