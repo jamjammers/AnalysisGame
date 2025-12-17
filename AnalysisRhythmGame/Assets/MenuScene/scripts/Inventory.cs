@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using NUnit.Framework;
+using TMPro;
 
 public static class Inventory
 {
@@ -13,16 +15,34 @@ public static class Inventory
     static bool secretGuarentee = true;
     public static CollectionScreen collectionScreen;
 
+    static TextMeshProUGUI pullsText;
+    static TextMeshProUGUI levelText;
+    static TextMeshProUGUI ticketsText;
+    public static void setUp(TextMeshProUGUI pulls, TextMeshProUGUI level, TextMeshProUGUI tickets)
+    {
+        pullsText = pulls;
+        levelText = level;
+        ticketsText = tickets;
+    }
+
     public static bool characterPull()
     {
         if (pulls <= 0) return false;
         pulls--;
+
+        if(pullsText != null)
+            pullsText.text = pulls.ToString();
+
         return true;
     }
     public static bool ticketPull()
     {
         if (tickets <= 0) return false;
         tickets--;
+
+        if(ticketsText != null)
+            ticketsText.text = tickets.ToString();
+
         return true;
     }
     public static void addCard(GachaCard gachaCard)
@@ -44,14 +64,18 @@ public static class Inventory
     public static void addPulls(int amount)
     {
         pulls += amount;
+        if(pullsText != null)
+            pullsText.text = pulls.ToString();
     }
     public static void addTicket()
     {
-        tickets++;
+        addTickets(1);
     }
     public static void addTickets(int amount)
     {
         tickets += amount;
+        if(ticketsText != null)
+            ticketsText.text = tickets.ToString();
     }
     public static void gainExp(float amount)
     {
@@ -61,6 +85,8 @@ public static class Inventory
             exp -= level * 100;
             level++;
         }
+        if(levelText != null)
+            levelText.text = level.ToString();
     }
     public static void setSecretGuarentee(bool val)
     {

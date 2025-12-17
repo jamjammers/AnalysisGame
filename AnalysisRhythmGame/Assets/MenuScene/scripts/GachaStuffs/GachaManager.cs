@@ -6,6 +6,10 @@ public class GachaManager : MonoBehaviour
     public GameObject[] Banners;
     public GameObject nextButton;
     public GameObject previousButton;
+
+    public GameObject risky;
+    public GameObject safe;
+    public GameObject regular;
     int selected = 0;
     public void next()
     {
@@ -22,6 +26,19 @@ public class GachaManager : MonoBehaviour
         {
             previousButton.SetActive(true);
         }
+
+        if(Banners[selected].GetComponent<GachaBanner>().bannerType == GachaBanner.BannerType.FOOD)
+        {
+            risky.SetActive(true);
+            safe.SetActive(true);
+            regular.SetActive(false);
+        }
+        else
+        {
+            risky.SetActive(false);
+            safe.SetActive(false);
+            regular.SetActive(true);
+        }
     }
     public void previous()
     {
@@ -37,6 +54,19 @@ public class GachaManager : MonoBehaviour
         if(selected == Banners.Length - 2)
         {
             nextButton.SetActive(true);
+        }
+
+        if(Banners[selected].GetComponent<GachaBanner>().bannerType == GachaBanner.BannerType.FOOD)
+        {
+            risky.SetActive(true);
+            safe.SetActive(true);
+            regular.SetActive(false);
+        }
+        else
+        {
+            risky.SetActive(false);
+            safe.SetActive(false);
+            regular.SetActive(true);
         }
     }
     public GachaBanner.BannerType getBannerType()

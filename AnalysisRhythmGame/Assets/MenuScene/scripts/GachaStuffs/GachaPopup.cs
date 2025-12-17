@@ -17,6 +17,7 @@ public class GachaPopup : MonoBehaviour
     {
         particles = FindObjectsByType<ParticleSystem>(FindObjectsInactive.Include, FindObjectsSortMode.None).FirstOrDefault(p => p.transform.parent != null && p.transform.parent.name == "Gacha");
         gachaManager = transform.parent.GetComponent<GachaManager>();
+
     }
     // Update is called once per frame
     void Update()
@@ -38,12 +39,12 @@ public class GachaPopup : MonoBehaviour
         if (gachaCard == null) return;
         thing.texture = gachaCard.texture;
 
-        particles.Play();
+        
         Gradient grad = new Gradient();
         grad.SetKeys( 
             new GradientColorKey[] { 
                 new GradientColorKey(Color.white, 0.0f), 
-                new GradientColorKey(special? new Color(0xFF, 0xE1, 0): new Color(00,0xD6,0xFF), 1.0f) 
+                new GradientColorKey(special? new Color(0xFF, 0xCE, 0): new Color(00,0xD6,0xFF), 0.8f) 
                 }, 
             new GradientAlphaKey[] { 
                 new GradientAlphaKey(0.8f, 0.0f), 
@@ -52,8 +53,10 @@ public class GachaPopup : MonoBehaviour
             );
 
         var colorOverLifetime = particles.colorOverLifetime;
-        colorOverLifetime.color = grad;
+        colorOverLifetime.color = new ParticleSystem.MinMaxGradient(grad);
+        colorOverLifetime.enabled = true;
 
+        particles.Play();
 
         // set alpha to 3 so that it like fades out
         Color temp = thing.color;

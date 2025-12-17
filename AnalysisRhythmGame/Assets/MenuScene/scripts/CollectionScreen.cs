@@ -21,6 +21,7 @@ public class CollectionScreen : BasicScreen
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        index = 0;
         foreach(GameObject child in children)
             Destroy(child);
             
