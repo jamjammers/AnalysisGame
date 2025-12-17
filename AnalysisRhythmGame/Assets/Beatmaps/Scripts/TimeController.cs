@@ -19,6 +19,7 @@ public class TimeController : MonoBehaviour
     private string state = "pause";
 
     public static float CTIME = 0f;
+    public static float waitTime = 3f;
 
     static bool debug = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,7 +27,6 @@ public class TimeController : MonoBehaviour
     {
         // SONGLENGTH = _audioSource.clip.length;
 
-        _audioSource.Play();
         StartCoroutine(end((debug ? 0 : _audioSource.clip.length) + 2f));
 
         Debug.Log(_audioSource.clip.length);
@@ -50,6 +50,16 @@ public class TimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_audioSource.isPlaying)
+        {
+            CTIME = _audioSource.time + waitTime;
+        } else if (CTIME < waitTime)
+        {
+            CTIME += Time.deltaTime;
+        } else
+        {
+            _audioSource.Play();
+        }
         // if(Input.GetKeyDown(KeyCode.Space) && !oldK) {
         //     switch (state) {
         //         case "pause":
@@ -71,12 +81,14 @@ public class TimeController : MonoBehaviour
         //     case "play":
         //             // moving each note manually as a function of time
 
-
-        foreach(Note note in NoteSpawner.notes)
+        for (int i = 0; i < NoteSpawner.notes.Count; i++)
         {
-            note.update(CTIME);
+            if(NoteSpawner.prefabs[i] == null) continue;
+
+            NoteSpawner.prefabs[i].transform.position = new Vector3(NoteSpawner.prefabs[i].transform.position.x, 
+                                                    NoteSpawner.prefabs[i].transform.position.y, 
+                                                    NoteSpawner.notes[i].speed * (NoteSpawner.notes[i].impactTime+waitTime - CTIME) + NoteSpawner.notes[i].scale.z / 2);
         }
-        
         //         break;
         // }
 
@@ -84,12 +96,12 @@ public class TimeController : MonoBehaviour
         // if ((int)t%60 < 10) {_globalTime.text = ((int)(t/60)).ToString() + ":0" + ((int)t%60).ToString();}
         // else{_globalTime.text = ((int)(t/ 60)).ToString() + ":" + ((int)t%60).ToString();}
 
-        if (_audioSource.isPlaying)
-        {
-            CTIME = _audioSource.time;
+        // if (_audioSource.isPlaying)
+        // {
+            // CTIME = _audioSource.time;
             //     if ((int)CTIME%60 < 10) {_currentTime.text = ((int)(CTIME / 60)).ToString() + ":0" + ((int)(CTIME*100%6000)).ToString();}
             //     else{_currentTime.text = ((int)(CTIME/ 60)).ToString() + ":" + ((int)(CTIME*100%6000)).ToString();}            
-        }
+        // }
 
     }
     void PlayAudio(float time)
