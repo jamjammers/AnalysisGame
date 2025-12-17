@@ -64,6 +64,7 @@ public static class Inventory
     public static void addPulls(int amount)
     {
         pulls += amount;
+        
         if(pullsText != null)
             pullsText.text = pulls.ToString();
     }
