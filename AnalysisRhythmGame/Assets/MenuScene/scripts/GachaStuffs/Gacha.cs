@@ -31,7 +31,7 @@ public class Gacha : MonoBehaviour
         { GachaCard.GachaRarity.LEGENDARY, new List<GachaCard>() }
     };
 
-    static bool debugMode = true;
+    static bool debugMode = false;
     public void Start()
     {
         Inventory.collectionScreen = FindObjectsByType<CollectionScreen>(FindObjectsInactive.Include, FindObjectsSortMode.None)[0];
