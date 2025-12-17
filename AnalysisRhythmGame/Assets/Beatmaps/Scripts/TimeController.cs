@@ -21,7 +21,7 @@ public class TimeController : MonoBehaviour
     public static float CTIME = 0f;
     public static float waitTime = 3f;
 
-    static bool debug = false;
+    static bool debug = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

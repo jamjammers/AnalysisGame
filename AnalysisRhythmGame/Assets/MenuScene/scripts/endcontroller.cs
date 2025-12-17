@@ -18,6 +18,8 @@ public class EndController : MonoBehaviour
 
     public static bool gameJustCompleted = false;
     public static bool grantPull = false;
+
+    public static int ticketCounter = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -47,7 +49,7 @@ public class EndController : MonoBehaviour
             {
                 expText = child.gameObject;
             }
-            else if(child.name == "Pull")
+            else if(child.name == "Pulls")
             {
                 pullText = child.gameObject;
             }
@@ -107,6 +109,11 @@ public class EndController : MonoBehaviour
         {
             Inventory.addTicket();   
         }
-
+        ticketCounter++;
+        if(ticketCounter >= 5)
+        {
+            Inventory.addTicket();
+            ticketCounter = 0;
+        }
     }
 }
