@@ -40,8 +40,8 @@ public class Gacha : MonoBehaviour
 
         if (debugMode)
         {
-            Inventory.addPulls(10000);
-            Inventory.addTickets(10000);
+            Inventory.addPulls(100);
+            Inventory.addTickets(100);
             Inventory.addCards(rarityDict[GachaCard.GachaRarity.FIVE_STAR]);
             Inventory.addCards(rarityDict[GachaCard.GachaRarity.FOUR_STAR]);
             Inventory.addCards(rarityDict[GachaCard.GachaRarity.THREE_STAR]);
