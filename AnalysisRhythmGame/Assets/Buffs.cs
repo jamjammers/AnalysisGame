@@ -41,6 +41,9 @@ public static class Buffs
         Coal Tier: really bad debuff
             Coal: random note speed
 
+        Curse Tier: debuffs (with a slight counteracting buff?)
+            cockroach sandwich: increases HP loss on misses
+            mud pie: requires more precise timing + other things (think hard rock)
         Curse Tier: debuffs (with a slight counteracting buff)
             cockroach sandwich: increased miss hp loss
             mud pie: requires more precise timing
