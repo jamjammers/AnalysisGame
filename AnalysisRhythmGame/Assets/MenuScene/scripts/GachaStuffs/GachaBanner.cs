@@ -1,23 +1,42 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GachaBanner : MonoBehaviour
 {
     public int direction = 0;
-    public bool isMain = false;
+    public bool isMain;
 
     [SerializeField]
     
     public BannerType bannerType = BannerType.CHARACTER;
     RectTransform rt;
+
+
+    public RawImage rawImage;
+    public Texture2D[] bannerImages;
+
+    public int index = 0;
+    public float switchTimer = 0;
+    public float switchInterval = 5;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rt = GetComponent<RectTransform>();
+        rawImage = GetComponent<RawImage>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isMain)
+        {
+            switchTimer += Time.deltaTime;
+
+            if (switchTimer < switchInterval) return;
+            switchTimer = 0;
+            index = (index + 1) % bannerImages.Length;
+            rawImage.texture = bannerImages[index];
+        }
         if(direction == 0) return;
         if (isMain)
         {
@@ -27,6 +46,7 @@ public class GachaBanner : MonoBehaviour
                 direction = 0;
             }
             rt.position += Vector3.right * Time.deltaTime * direction;
+
         }
         else
         {
@@ -35,6 +55,7 @@ public class GachaBanner : MonoBehaviour
                 direction = 0;
             }
         }
+        
     }
     public void move(int dir, bool main, float offset = 0)
     {
