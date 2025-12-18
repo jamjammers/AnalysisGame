@@ -41,8 +41,8 @@ public static class Buffs
         Coal Tier: really bad debuff
             Coal: random note speed
 
-        Curse Tier: debuffs (with a slight counteracting buff)
-            cockroach sandwich: idk
+        Curse Tier: debuffs (with a slight counteracting buff?)
+            cockroach sandwich: increases HP loss on misses
             mud pie: requires more precise timing + other things (think hard rock)
 
         Trash Tier: light vision debuff
@@ -55,12 +55,12 @@ public static class Buffs
             
         Rare Tier: minor (non-score related) buffs 
             burger: starting hp ++
-            chicken nuggets: I'm rinning out of ideas
-            fries: out of ideas
+            chicken nuggets: don't decerase hp after misses 5 times
+            fries: don't decrease combo after misses or goods 5 times
             
         Epic Tier: major buffs ?
             boba: perfects give more score
-            ramen: slightly increases something
+            ramen: slightly increases perfect window
             sushi: overall score boost
             
         legendary tier: ultimate buffs

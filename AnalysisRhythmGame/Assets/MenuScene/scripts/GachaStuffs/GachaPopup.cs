@@ -1,6 +1,5 @@
 using UnityEngine.UI;
 using UnityEngine;
-using UnityEditor.Rendering;
 using System.IO;
 using System.Linq;
 using NUnit.Framework.Constraints;
