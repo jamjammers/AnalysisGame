@@ -14,31 +14,41 @@ public class CollisionFlick : MonoBehaviour
     private bool enter = false;
     private float t1=0f;
     private float t2=0f;
-    private float speed = NoteSpawner.spd;
+    private float speed = BuffNumbers.spd;
 
     public void Update()
     {
         if (transform.position.z < speed/2 && Input.GetKeyDown(KeyMapping.keyMap[key1])) k1 = true;
-        if (k1 && Input.GetKeyDown(KeyMapping.keyMap[key2])) {hit = true; hitEffect.Play();}
+        if (k1 && Input.GetKeyDown(KeyMapping.keyMap[key2])) {hit = true; hitEffect.Play(); t1 = 0; }
         if (hit) t1 += Time.deltaTime;
         if (enter) t2 += Time.deltaTime;
         if (transform.position.z < speed/(-4) && !hit) {
             Destroy(gameObject);
             hitCategory.text = "Miss";
-            ScoreController.BreakCombo();
+            hitCategory.CrossFadeAlpha(1,.01f,false);
+            if (BuffNumbers.bubbles && UnityEngine.Random.value < .65f) {
+                // hi (do nothing)
+            } else {ScoreController.BreakCombo();}
         }
         
         if (hit && enter)
         {
             float dif = Math.Abs(t2-t1);
-            if (dif < 0.05) { 
+            if (BuffNumbers.perf && dif < BuffNumbers.timingTolerance * 8) {
                 hitCategory.text = "Perfect"; 
+                hitCategory.CrossFadeAlpha(1,.01f,false);
                 ScoreController.ScorePerfect();
-            } else if (dif < .2) { 
+            } else if (dif < BuffNumbers.timingTolerance) { 
+                hitCategory.text = "Perfect"; 
+                hitCategory.CrossFadeAlpha(1,.01f,false);
+                ScoreController.ScorePerfect();
+            } else if (dif < BuffNumbers.timingTolerance * 4) { 
                 hitCategory.text = "Great"; 
+                hitCategory.CrossFadeAlpha(1,.01f,false);
                 ScoreController.ScoreGreat();
             } else { 
                 hitCategory.text = "Good";
+                hitCategory.CrossFadeAlpha(1,.01f,false);
                 ScoreController.ScoreGood();
             }
 

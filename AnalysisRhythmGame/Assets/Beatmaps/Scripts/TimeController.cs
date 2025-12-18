@@ -19,7 +19,7 @@ public class TimeController : MonoBehaviour
     private string state = "pause";
 
     public static float CTIME = 0f;
-    public static float waitTime = 3f;
+    public static float waitTime = 2;
 
     static bool debug = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -110,7 +110,7 @@ public class TimeController : MonoBehaviour
         _audioSource.Play();
     }
 
-    public IEnumerator end(float delay)
+    public static IEnumerator end(float delay)
     {
         Debug.Log(delay);
         yield return new WaitForSeconds(delay);

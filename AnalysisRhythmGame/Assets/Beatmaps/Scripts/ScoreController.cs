@@ -8,6 +8,7 @@ public class ScoreController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private TextMeshProUGUI _comboText;
+    [SerializeField] private TextMeshProUGUI hitCategory;
     public static int score = 0;
     private static int combo = 0;
     public static int maxCombo {get; private set;} = 0;
@@ -40,15 +41,24 @@ public class ScoreController : MonoBehaviour
         }
 
         time += Time.deltaTime;
+
+        hitCategory.CrossFadeAlpha(0,.5f,false);
     }
 
-    public static void AddScore() { score += 5 * combo + 5; }
-    public static void BreakCombo() { maxCombo = Mathf.Max(combo, maxCombo); combo = 0; miss++;}
+    public static void AddScore() { score += (int) BuffNumbers.scoreBuffs * (5 * combo + 5); }
     public static void AddCombo() { maxCombo = Mathf.Max(combo, maxCombo); combo += 1;}
-    public static void ScorePerfect() { score += 30; AddCombo(); perfect++;}
-    public static void ScoreGreat() { score += 10; AddCombo(); great++;}
-    public static void ScoreGood() { score += 5; AddCombo(); good++; combo = 0;}
+    public static void ScorePerfect() { score += (int) (BuffNumbers.scoreBuffs * BuffNumbers.perfectBuff * 30); AddCombo(); perfect++; HPController.hp += 75+BuffNumbers.hpBonus;}
+    public static void ScoreGreat() { score += (int) BuffNumbers.scoreBuffs * 10; AddCombo(); great++; HPController.hp += 50+BuffNumbers.hpBonus;}
+    public static void ScoreGood() { score += (int) BuffNumbers.scoreBuffs * 5; AddCombo(); good++; combo = 0; HPController.hp += 25+BuffNumbers.hpBonus;}
 
+    public static void BreakCombo() { 
+        if (BuffNumbers.petals && UnityEngine.Random.value < .65f) {
+            // do nothing
+        } else {HPController.hp -= BuffNumbers.missValue;}
+        maxCombo = Mathf.Max(combo, maxCombo); 
+        combo = 0; 
+        miss++; 
+    }
     public static void ResetScore()
     {
         score = 0;

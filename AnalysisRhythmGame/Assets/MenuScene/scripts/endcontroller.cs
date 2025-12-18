@@ -87,7 +87,7 @@ public class EndController : MonoBehaviour
     }
     void distributeRewards(int score, int perfect, int great, int good, int miss)
     {
-        float expGain = Mathf.Max(Utilities.Normal(score, 10000), 0);
+        float expGain = Mathf.Max(Utilities.Normal(score, 10000), 0) * BuffNumbers.expBoost;
         expText.GetComponent<TextMeshProUGUI>().text = "Exp Gained: \n" + expGain.ToString();
         Inventory.gainExp(expGain);
 

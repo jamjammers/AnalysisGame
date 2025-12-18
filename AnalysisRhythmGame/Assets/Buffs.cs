@@ -20,9 +20,9 @@ public static class Buffs
             scared: +score %
 
         4*: good buffs
-            bubbles: grants "bubbles" that grants combo on misses, etc (n) times
+            bubbles: grants "bubbles" that grants combo on misses, 65% chance
             cook: grants extra hp for each perfect note
-            flower: grants "petals" that prevents hp loss (n) times
+            flower: grants "petals" that prevents hp loss, 65% chance
             painter: multiplies the size of the judgement bar by (n%)
             singer: grants a score boost for perfect notes
 
@@ -42,11 +42,11 @@ public static class Buffs
             Coal: random note speed
 
         Curse Tier: debuffs (with a slight counteracting buff)
-            cockroach sandwich: idk
-            mud pie: requires more precise timing + other things (think hard rock)
+            cockroach sandwich: increased miss hp loss
+            mud pie: requires more precise timing
 
         Trash Tier: light vision debuff
-            fast food wrappers: high contrast mode or sthn
+            fast food wrappers: very slow note speed
 
         Uncommon Tier: drop rate buffs
             ketchup: more player exp (% boost)
@@ -55,12 +55,12 @@ public static class Buffs
             
         Rare Tier: minor (non-score related) buffs 
             burger: starting hp ++
-            chicken nuggets: I'm rinning out of ideas
-            fries: out of ideas
+            chicken nuggets: decrease hp loss per time
+            fries: minor score buff
             
         Epic Tier: major buffs ?
             boba: perfects give more score
-            ramen: slightly increases something
+            ramen: slightly increases great and good
             sushi: overall score boost
             
         legendary tier: ultimate buffs
