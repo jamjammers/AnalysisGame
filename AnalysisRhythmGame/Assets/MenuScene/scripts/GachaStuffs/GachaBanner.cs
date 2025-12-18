@@ -32,10 +32,11 @@ public class GachaBanner : MonoBehaviour
         {
             switchTimer += Time.deltaTime;
 
-            if (switchTimer < switchInterval) return;
+            if (switchTimer >= switchInterval) {
             switchTimer = 0;
             index = (index + 1) % bannerImages.Length;
             rawImage.texture = bannerImages[index];
+            }
         }
         if(direction == 0) return;
         if (isMain)

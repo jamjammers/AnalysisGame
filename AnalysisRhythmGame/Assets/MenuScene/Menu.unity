@@ -10415,9 +10415,9 @@ MonoBehaviour:
   - {fileID: 1530078583}
   nextButton: {fileID: 992712838}
   previousButton: {fileID: 579527641}
-  risky: {fileID: 0}
-  safe: {fileID: 0}
-  regular: {fileID: 0}
+  risky: {fileID: 1661673500}
+  safe: {fileID: 1047501874}
+  regular: {fileID: 470555332}
 --- !u!1 &1416375598
 GameObject:
   m_ObjectHideFlags: 0

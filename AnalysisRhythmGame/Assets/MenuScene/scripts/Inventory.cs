@@ -18,11 +18,18 @@ public static class Inventory
     static TextMeshProUGUI pullsText;
     static TextMeshProUGUI levelText;
     static TextMeshProUGUI ticketsText;
-    public static void setUp(TextMeshProUGUI pulls, TextMeshProUGUI level, TextMeshProUGUI tickets)
+    public static void setUp(TextMeshProUGUI p, TextMeshProUGUI l, TextMeshProUGUI t)
     {
-        pullsText = pulls;
-        levelText = level;
-        ticketsText = tickets;
+        pullsText = p;
+        levelText = l;
+        ticketsText = t;
+
+        if(pullsText != null)
+            pullsText.text = pulls.ToString();
+        if(levelText != null)
+            levelText.text = level.ToString();
+        if(ticketsText != null)
+            ticketsText.text = tickets.ToString();
     }
 
     public static bool characterPull()

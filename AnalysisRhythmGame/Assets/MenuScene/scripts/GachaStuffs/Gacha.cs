@@ -197,7 +197,11 @@ public class Gacha : MonoBehaviour
         int randValue = UnityEngine.Random.Range(0, rarityDict[rarity].Count);
         GachaCard pulledCard = rarityDict[rarity][randValue];
 
-        Inventory.addCard(pulledCard);
+        if (pulledCard.rarity == GachaCard.GachaRarity.FOOD_TICKET)
+        
+            Inventory.addTickets(1);
+        else
+            Inventory.addCard(pulledCard);
 
         return (pulledCard, critical);
     }
